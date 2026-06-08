@@ -6,6 +6,10 @@
   <title>GLP-1 Protein Calculator</title>
   <meta name="description" content="Calculate your daily protein, water, calorie and muscle-preservation goals while using GLP-1 medications like Ozempic, Wegovy, Zepbound and Mounjaro." />
 
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5063827367072521"
+     crossorigin="anonymous"></script>
+
   <style>
     :root {
       --blue: #2563eb;
@@ -674,8 +678,69 @@
       line-height: 1.5;
     }
 
+    .ad-slot {
+      max-width: 1180px;
+      margin: 26px auto;
+      padding: 10px 0;
+      text-align: center;
+      min-height: 100px;
+    }
+
+    .ad-label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    .affiliate {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(15,23,42,.06);
+    }
+
+    .affiliate h2 { margin: 0 0 4px; font-size: 28px; letter-spacing: -1px; }
+    .affiliate .sub { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+
+    .aff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .aff-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      background: #f8fafc;
+    }
+
+    .aff-card .aff-emoji { font-size: 30px; }
+    .aff-card strong { margin: 10px 0 4px; font-size: 16px; }
+    .aff-card span { color: var(--muted); font-size: 13px; line-height: 1.5; flex: 1; }
+
+    .aff-card a {
+      margin-top: 14px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 11px;
+      border-radius: 12px;
+    }
+
+    .aff-note { color: var(--muted); font-size: 11px; margin-top: 16px; }
+
     @media print {
-      header, nav, .hero-actions, .email-box, footer { display: none !important; }
+      header, nav, .hero-actions, .email-box, footer, .ad-slot, .affiliate { display: none !important; }
       body { background: white; }
       .page { max-width: 900px; padding: 20px; }
       .calculator-card, .info-card, .chart-wrap, .faq { box-shadow: none; }
@@ -685,7 +750,7 @@
       header { margin-bottom: 24px; }
       nav { display: none; }
       .hero { grid-template-columns: 1fr; }
-      .sections, .dashboard-grid, .food-grid, .projection, .visualizer-grid, .side-effects, .live-stats { grid-template-columns: 1fr; }
+      .sections, .dashboard-grid, .food-grid, .projection, .visualizer-grid, .side-effects, .live-stats, .aff-grid { grid-template-columns: 1fr; }
       .form-grid, .results { grid-template-columns: 1fr; }
       .card-header, .section-title, .email-box { flex-direction: column; display: flex; align-items: flex-start; }
       .email-form { min-width: 100%; width: 100%; flex-direction: column; }
@@ -708,6 +773,7 @@
         <a href="#foods">Foods</a>
         <a href="#timeline">Timeline</a>
         <a href="#compare">Compare</a>
+        <a href="articles.html">Guides</a>
         <a href="#faq">FAQ</a>
       </nav>
     </header>
@@ -855,6 +921,18 @@
       </div>
     </section>
 
+    <!-- AD 1: highest-value placement, right after the result reveal -->
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5063827367072521"
+           data-ad-slot="REPLACE_SLOT_1"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <div class="section-title">
       <div>
         <h2>Today’s GLP‑1 Dashboard</h2>
@@ -955,6 +1033,18 @@
         </div>
       </div>
     </section>
+
+    <!-- AD 2: mid-scroll, after high-engagement food visualizer -->
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5063827367072521"
+           data-ad-slot="REPLACE_SLOT_2"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <div class="section-title" id="timeline">
       <div>
@@ -1089,6 +1179,45 @@
       <div class="effect-pill">Muscle Loss</div>
     </section>
 
+    <!-- AFFILIATE: high-intent products for GLP-1 users. Replace # with your tracked links. -->
+    <section class="affiliate">
+      <h2>🛒 Helpful for hitting your protein target</h2>
+      <p class="sub">Popular picks for people managing nutrition on GLP‑1 medication.</p>
+      <div class="aff-grid">
+        <div class="aff-card">
+          <div class="aff-emoji">🥤</div>
+          <strong>Whey / Clear Protein Powder</strong>
+          <span>Fast way to add 25–30g protein when appetite is low.</span>
+          <a href="#" rel="sponsored nofollow" target="_blank">View on Amazon</a>
+        </div>
+        <div class="aff-card">
+          <div class="aff-emoji">⚖️</div>
+          <strong>Digital Food Scale</strong>
+          <span>Hit your daily grams accurately without guessing portions.</span>
+          <a href="#" rel="sponsored nofollow" target="_blank">View on Amazon</a>
+        </div>
+        <div class="aff-card">
+          <div class="aff-emoji">💧</div>
+          <strong>Electrolyte Hydration Mix</strong>
+          <span>Helps with hydration and fatigue common on GLP‑1.</span>
+          <a href="#" rel="sponsored nofollow" target="_blank">View on Amazon</a>
+        </div>
+      </div>
+      <p class="aff-note">As an affiliate we may earn from qualifying purchases. This is not medical advice.</p>
+    </section>
+
+    <!-- AD 3: deep-scroll, near conversion intent -->
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5063827367072521"
+           data-ad-slot="REPLACE_SLOT_3"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <section class="email-box">
       <div>
         <h2>Get weekly GLP‑1 tips</h2>
@@ -1121,7 +1250,14 @@
     </section>
 
     <footer>
-      © 2026 GLP‑1 Protein Calculator. Educational tool only.
+      <div style="margin-bottom:10px;">
+        <a href="articles.html" style="color:var(--muted);text-decoration:none;margin:0 8px;font-weight:700;">Guides</a>
+        <a href="about.html" style="color:var(--muted);text-decoration:none;margin:0 8px;font-weight:700;">About</a>
+        <a href="contact.html" style="color:var(--muted);text-decoration:none;margin:0 8px;font-weight:700;">Contact</a>
+        <a href="privacy.html" style="color:var(--muted);text-decoration:none;margin:0 8px;font-weight:700;">Privacy</a>
+        <a href="disclaimer.html" style="color:var(--muted);text-decoration:none;margin:0 8px;font-weight:700;">Disclaimer</a>
+      </div>
+      © 2026 GLP‑1 Protein Calculator. Educational tool only — not medical advice.
     </footer>
   </main>
 
@@ -1276,11 +1412,22 @@
       }
     }
 
-    function subscribe(event) {
+    async function subscribe(event) {
       event.preventDefault();
-      const email = document.getElementById("email").value;
-      alert("Thanks! Email saved locally for demo: " + email);
-      document.getElementById("email").value = "";
+      const input = document.getElementById("email");
+      const email = input.value.trim();
+      if (!email) return;
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient
+            .from("subscribers")
+            .insert({ email: email, source: "glp1crack" });
+        } catch (e) { /* fail silently, still thank the user */ }
+      }
+
+      alert("Thanks! You're on the list. 🎉");
+      input.value = "";
     }
 
     function getSessionId() {
