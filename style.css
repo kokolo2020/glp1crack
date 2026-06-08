@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f4f8fb;
+  color: #152238;
+}
+
+.page {
+  max-width: 760px;
+  margin: auto;
+  padding: 24px;
+}
+
+.hero {
+  text-align: center;
+  padding: 34px 10px 22px;
+}
+
+.badge {
+  display: inline-block;
+  background: #e4f1ff;
+  color: #1769aa;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 42px;
+  margin: 18px 0 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #526170;
+}
+
+.calculator-card,
+.result-card,
+.seo-content {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  margin-top: 20px;
+  box-shadow: 0 12px 30px rgba(22, 55, 90, 0.08);
+}
+
+label {
+  display: block;
+  margin: 16px 0 8px;
+  font-weight: 700;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  gap: 10px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #d6e1ea;
+  border-radius: 14px;
+  font-size: 16px;
+  background: #fbfdff;
+}
+
+button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 17px;
+  border: none;
+  border-radius: 16px;
+  background: #1677ff;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0d63d8;
+}
+
+.hidden {
+  display: none;
+}
+
+.result-card {
+  text-align: center;
+}
+
+.big-number {
+  font-size: 66px;
+  font-weight: 900;
+  color: #1677ff;
+}
+
+.sub {
+  color: #6b7a89;
+  margin-top: -10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.grid div {
+  background: #f4f8fb;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.grid strong {
+  display: block;
+  font-size: 24px;
+}
+
+.grid span {
+  color: #6b7a89;
+  font-size: 14px;
+}
+
+ul {
+  text-align: left;
+  line-height: 1.9;
+}
+
+.note,
+.disclaimer {
+  background: #fff8df;
+  border-radius: 14px;
+  padding: 14px;
+  color: #665000;
+}
+
+.seo-content {
+  line-height: 1.7;
+}
+
+@media (max-width: 560px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .page {
+    padding: 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
