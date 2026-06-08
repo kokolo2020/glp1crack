@@ -86,7 +86,6 @@ your health or medication, please contact your doctor or pharmacist instead.</di
 <script>
 const SUPABASE_URL = "https://mjnigheggxtythytsqle.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qbmlnaGVnZ3h0eXRoeXRzcWxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNzYwMDcsImV4cCI6MjA5NTY1MjAwN30.mh1psePuKeQ8SH5uita7BsUKd6wd5IwHVVlDmJCMA0Q";
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 async function sendMsg(e){
   e.preventDefault();
@@ -102,6 +101,10 @@ async function sendMsg(e){
   status.style.color = "#64748b";
 
   try {
+    if (typeof supabase === "undefined" || !supabase.createClient) {
+      throw new Error("Supabase library not loaded");
+    }
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     const { error } = await sb.from('messages').insert({
       name: name, email: email, message: message, source: 'glp1crack'
     });
@@ -112,6 +115,7 @@ async function sendMsg(e){
     document.getElementById('cemail').value = "";
     document.getElementById('cmsg').value = "";
   } catch(err) {
+    console.error("Contact form error:", err);
     status.textContent = "Couldn't send right now. Please email us at moneyn8n@gmail.com instead.";
     status.style.color = "#ef4444";
   }
