@@ -1409,6 +1409,11 @@
 
       if (countAsAction) {
         increaseLocalCalcCount();
+        logEvent("calculate", {
+          medication: document.getElementById("medication").value,
+          goal: goal,
+          unit: unit
+        });
       }
     }
 
@@ -1485,21 +1490,42 @@
       }
     }
 
-    function loadCalculationCounter() {
-      const value = Number(localStorage.getItem("glp1_demo_calculations") || "2381");
-      document.getElementById("calcCount").textContent = value.toLocaleString();
+    function logEvent(type, meta) {
+      if (!supabaseClient) return;
+      supabaseClient
+        .from("events")
+        .insert({ event_type: type, meta: meta || {} })
+        .then(() => {}, () => {});
+    }
+
+    async function loadCalculationCounter() {
+      const el = document.getElementById("calcCount");
+      if (supabaseClient) {
+        try {
+          const { count, error } = await supabaseClient
+            .from("events")
+            .select("*", { count: "exact", head: true })
+            .eq("event_type", "calculate");
+          if (!error && count !== null) {
+            el.textContent = count.toLocaleString();
+            return;
+          }
+        } catch (e) {}
+      }
+      const value = Number(localStorage.getItem("glp1_demo_calculations") || "0");
+      el.textContent = value.toLocaleString();
     }
 
     function increaseLocalCalcCount() {
-      let value = Number(localStorage.getItem("glp1_demo_calculations") || "2381");
+      let value = Number(localStorage.getItem("glp1_demo_calculations") || "0");
       value += 1;
       localStorage.setItem("glp1_demo_calculations", value);
-      document.getElementById("calcCount").textContent = value.toLocaleString();
     }
 
     calculate(false);
     updateOnlineUsers();
     loadCalculationCounter();
+    logEvent("visit", { page: location.pathname });
 
     setInterval(updateOnlineUsers, 30000);
   </script>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Traffic Report | GLP-1 Protein Calculator</title>
+<style>
+:root{--blue:#2563eb;--blue-dark:#1d4ed8;--green:#10b981;--green-dark:#047857;
+--text:#0f172a;--muted:#64748b;--bg:#f8fbff;--card:#fff;--border:#e2e8f0;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--text);
+background:radial-gradient(circle at top left,rgba(37,99,235,.16),transparent 34%),
+radial-gradient(circle at top right,rgba(16,185,129,.14),transparent 32%),var(--bg);}
+.page{max-width:920px;margin:0 auto;padding:28px 20px 70px;}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:12px;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none;color:var(--text);}
+.logo-mark{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--green));
+display:grid;place-items:center;color:#fff;}
+h1{font-size:32px;letter-spacing:-1px;margin:0 0 4px;}
+.sub{color:var(--muted);margin:0 0 24px;}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;
+box-shadow:0 10px 24px rgba(15,23,42,.06);}
+.kpi small{color:var(--muted);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.5px;}
+.kpi strong{display:block;margin-top:8px;font-size:30px;letter-spacing:-1px;}
+.kpi .hint{color:var(--muted);font-size:12px;margin-top:4px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:26px;
+box-shadow:0 12px 30px rgba(15,23,42,.06);margin-bottom:22px;}
+.card h2{margin:0 0 16px;font-size:20px;letter-spacing:-.5px;}
+.bars{display:flex;align-items:flex-end;gap:10px;height:180px;}
+.bcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end;height:100%;}
+.bwrap{width:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;}
+.bar{width:70%;background:linear-gradient(180deg,var(--blue),var(--green));border-radius:8px 8px 0 0;min-height:3px;}
+.bcol .num{font-weight:800;font-size:13px;}
+.bcol .day{color:var(--muted);font-size:11px;}
+.row{display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid var(--border);}
+.row:first-child{border-top:none;}
+.row .v{font-weight:800;}
+button{background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;border:none;
+border-radius:12px;padding:11px 18px;font-weight:800;font-size:14px;cursor:pointer;}
+.muted{color:var(--muted);font-size:13px;}
+a.back{color:var(--blue-dark);font-weight:800;text-decoration:none;}
+@media(max-width:700px){.kpi-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<main class="page">
+<header>
+<a class="logo" href="index.html"><span class="logo-mark">G</span><span>Traffic Report</span></a>
+<button onclick="loadAll()">↻ Refresh</button>
+</header>
+
+<h1>GLP‑1 Calculator — Traffic Report</h1>
+<p class="sub" id="status">Loading data…</p>
+
+<div class="kpi-grid">
+  <div class="kpi"><small>Total Visits</small><strong id="kVisits">—</strong><div class="hint">all time</div></div>
+  <div class="kpi"><small>Calculations</small><strong id="kCalcs">—</strong><div class="hint">button clicks</div></div>
+  <div class="kpi"><small>Try Rate</small><strong id="kRate">—</strong><div class="hint">calcs ÷ visits</div></div>
+  <div class="kpi"><small>Today</small><strong id="kToday">—</strong><div class="hint">visits / calcs</div></div>
+</div>
+
+<div class="card">
+  <h2>Last 7 days — calculations</h2>
+  <div class="bars" id="bars"></div>
+</div>
+
+<div class="card">
+  <h2>Which medication users pick</h2>
+  <div id="meds"><p class="muted">No calculations yet.</p></div>
+</div>
+
+<p><a class="back" href="index.html">← Back to the calculator</a></p>
+<p class="muted">This page is private (not indexed). Anyone with the link can view these numbers — keep the URL to yourself.</p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://mjnigheggxtythytsqle.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qbmlnaGVnZ3h0eXRoeXRzcWxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNzYwMDcsImV4cCI6MjA5NTY1MjAwN30.mh1psePuKeQ8SH5uita7BsUKd6wd5IwHVVlDmJCMA0Q";
+
+let sb = null;
+try { sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch(e) {}
+
+async function countWhere(filters) {
+  let q = sb.from("events").select("*", { count: "exact", head: true });
+  filters.forEach(f => { q = q[f.op](f.col, f.val); });
+  const { count, error } = await q;
+  if (error) throw error;
+  return count || 0;
+}
+
+function startOfTodayISO() {
+  const d = new Date(); d.setHours(0,0,0,0); return d.toISOString();
+}
+
+async function loadAll() {
+  const status = document.getElementById("status");
+  if (!sb) { status.textContent = "Supabase not loaded."; return; }
+  status.textContent = "Loading data…";
+
+  try {
+    const todayISO = startOfTodayISO();
+    const [visits, calcs, tVisits, tCalcs] = await Promise.all([
+      countWhere([{op:"eq",col:"event_type",val:"visit"}]),
+      countWhere([{op:"eq",col:"event_type",val:"calculate"}]),
+      countWhere([{op:"eq",col:"event_type",val:"visit"},{op:"gte",col:"created_at",val:todayISO}]),
+      countWhere([{op:"eq",col:"event_type",val:"calculate"},{op:"gte",col:"created_at",val:todayISO}])
+    ]);
+
+    document.getElementById("kVisits").textContent = visits.toLocaleString();
+    document.getElementById("kCalcs").textContent = calcs.toLocaleString();
+    document.getElementById("kRate").textContent = visits ? Math.round((calcs/visits)*100) + "%" : "—";
+    document.getElementById("kToday").textContent = tVisits + " / " + tCalcs;
+
+    // Pull recent calculate events for daily + medication breakdown
+    const since = new Date(Date.now() - 7*24*60*60*1000).toISOString();
+    const { data, error } = await sb.from("events")
+      .select("event_type, meta, created_at")
+      .eq("event_type","calculate")
+      .gte("created_at", since)
+      .order("created_at", { ascending: false })
+      .limit(1000);
+    if (error) throw error;
+
+    // Daily buckets (last 7 days)
+    const days = [];
+    for (let i=6; i>=0; i--) {
+      const d = new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-i);
+      days.push({ key: d.toDateString(), label: d.toLocaleDateString(undefined,{weekday:"short"}), n: 0 });
+    }
+    const meds = {};
+    (data||[]).forEach(ev => {
+      const k = new Date(ev.created_at); k.setHours(0,0,0,0);
+      const bucket = days.find(x => x.key === k.toDateString());
+      if (bucket) bucket.n++;
+      const m = (ev.meta && ev.meta.medication) ? ev.meta.medication : "Unknown";
+      meds[m] = (meds[m]||0) + 1;
+    });
+
+    const max = Math.max(1, ...days.map(d=>d.n));
+    document.getElementById("bars").innerHTML = days.map(d =>
+      `<div class="bcol"><div class="bwrap"><div class="bar" style="height:${Math.round((d.n/max)*100)}%"></div></div>
+       <div class="num">${d.n}</div><div class="day">${d.label}</div></div>`).join("");
+
+    const medRows = Object.entries(meds).sort((a,b)=>b[1]-a[1]);
+    document.getElementById("meds").innerHTML = medRows.length
+      ? medRows.map(([m,n]) => `<div class="row"><span>${m}</span><span class="v">${n}</span></div>`).join("")
+      : '<p class="muted">No calculations yet.</p>';
+
+    status.textContent = "Updated " + new Date().toLocaleString();
+  } catch (err) {
+    console.error(err);
+    status.textContent = "Couldn't load data — make sure the 'events' table exists with a public read policy.";
+  }
+}
+
+loadAll();
+</script>
+</body>
+</html>
