@@ -3,962 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GLP1Crack — Free GLP-1 Calculators | Ozempic, Wegovy, Mounjaro, Zepbound</title>
-<meta name="description" content="Free GLP-1 calculators for Ozempic, Wegovy, Mounjaro & Zepbound. Dose calculator, weight loss predictor, titration schedule, macros & drug comparison. No signup required.">
-<meta name="keywords" content="GLP-1 calculator, Ozempic calculator, Wegovy dose calculator, Mounjaro weight loss, semaglutide calculator, tirzepatide calculator">
-<link rel="canonical" href="https://glp1crack.pro/">
-<meta property="og:title" content="GLP1Crack — Free GLP-1 Calculators">
-<meta property="og:description" content="Dose calculator, weight loss predictor, titration schedule & macros for Ozempic, Wegovy, Mounjaro & Zepbound.">
-<meta property="og:url" content="https://glp1crack.pro/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
-<!-- AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5063827367072521" crossorigin="anonymous"></script>
-<!-- GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M217CNEBB5"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M217CNEBB5');</script>
+<title>GLP-1 Protein Calculator</title>
+<meta name="description" content="Calculate your daily protein needs while taking GLP-1 medications such as Ozempic, Wegovy, and Zepbound.">
+
 <style>
-:root {
-  --green: #0d9488;
-  --green-dark: #0f766e;
-  --green-light: #ccfbf1;
-  --green-mid: #2dd4bf;
-  --green-pale: #f0fdfa;
-  --text: #1a2e1f;
-  --text2: #4a6b54;
-  --text3: #7a9b84;
-  --border: #d0e8d8;
-  --bg: #f4faf6;
-  --white: #ffffff;
-  --card: #ffffff;
-  --shadow: 0 1px 3px rgba(42,122,80,0.08), 0 4px 16px rgba(42,122,80,0.06);
-  --radius: 12px;
-  --radius-sm: 8px;
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 20px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6}
 
-/* NAV */
-.nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:48px;position:sticky;top:0;z-index:100}
-.logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text);letter-spacing:-0.3px}
-.logo span{color:var(--green)}
-.nav-links{display:flex;gap:6px;align-items:center}
-.nav-links a{font-size:12px;color:var(--text3);text-decoration:none;padding:4px 8px;border-radius:6px;transition:color 0.2s}
-.nav-links a:hover{color:var(--green)}
-.nav-visitor{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:5px}
-.visitor-dot{width:7px;height:7px;border-radius:50%;background:#0f766e;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.container {
+    max-width: 800px;
+    margin: auto;
+}
 
-/* HERO */
-.hero{background:var(--white);border-bottom:1px solid var(--border);padding:20px 24px 16px;text-align:center}
-.hero h1{font-family:'DM Serif Display',serif;font-size:28px;color:var(--text);letter-spacing:-1px;line-height:1.15;margin-bottom:6px}
-.hero h1 span{color:var(--green)}
-.hero p{font-size:13px;color:var(--text2);max-width:580px;margin:0 auto 12px}
-.hero-stats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-.hero-stat{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text3)}
-.hero-stat strong{color:var(--green);font-weight:600}
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
-/* LANG */
-.lang-bar{background:var(--white);border-bottom:1px solid var(--border);padding:8px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.lang-row{display:flex;gap:6px;flex-wrap:wrap}
-.lang-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.18s}
-.lang-btn:hover{border-color:var(--green);color:var(--green)}
-.lang-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
-.lang-btn .flag{font-size:14px}
-.mode-toggle{display:flex;border:1px solid var(--border);border-radius:20px;overflow:hidden;background:var(--white)}
-.mode-btn{font-size:12px;font-weight:500;padding:4px 14px;cursor:pointer;color:var(--text2);font-family:'DM Sans',sans-serif;border:none;background:transparent;transition:all 0.18s}
-.mode-btn.active{background:var(--green);color:#fff}
+h1 {
+    text-align: center;
+    color: #2563eb;
+}
 
-/* TABS */
-.tabs-wrap{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:0;overflow-x:auto}
-.tab-btn{font-size:13px;font-weight:500;padding:10px 16px;color:var(--text3);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;background:none;border-top:none;border-left:none;border-right:none;transition:all 0.18s}
-.tab-btn:hover{color:var(--green)}
-.tab-btn.active{color:var(--green);border-bottom-color:var(--green)}
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
 
-/* MAIN */
-.main{max-width:1000px;margin:0 auto;padding:16px 20px}
+button {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
-/* CARDS */
-.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
-.card-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+button:hover {
+    background: #1d4ed8;
+}
 
-/* FIELDS */
-.field{margin-bottom:10px}
-.field-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
-.field-name{font-size:13px;color:var(--text2)}
-.field-val{font-size:13px;font-weight:600;color:var(--text)}
-input[type=range]{width:100%;accent-color:#0d9488;cursor:pointer;height:4px}
-select,input[type=number],input[type=text]{width:100%;border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 10px;font-size:12px;color:var(--text);font-family:'DM Sans',sans-serif;background:var(--white);outline:none;transition:border 0.18s}
-select:focus,input:focus{border-color:var(--green)}
-.seg-row{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:10px}
-.seg-btn{flex:1;padding:6px;font-size:12px;font-weight:500;text-align:center;cursor:pointer;border:none;background:var(--white);color:var(--text2);font-family:'DM Sans',sans-serif;transition:all 0.18s}
-.seg-btn.active{background:var(--green);color:#fff}
+.results {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eff6ff;
+    border-radius: 10px;
+    display: none;
+}
 
-/* RESULT */
-.result-card{background:var(--green);border-radius:var(--radius);padding:14px;color:#fff}
-.result-top-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:0.75;margin-bottom:6px}
-.result-big{font-family:'DM Serif Display',serif;font-size:34px;letter-spacing:-1px;line-height:1;margin-bottom:4px}
-.result-sub{font-size:12px;opacity:0.75;margin-bottom:10px;line-height:1.4}
-.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.result-mini{background:rgba(255,255,255,0.15);border-radius:8px;padding:8px 10px}
-.result-mini-label{font-size:9px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;opacity:0.7;margin-bottom:3px}
-.result-mini-val{font-size:15px;font-weight:600}
-
-/* BUTTON */
-.calc-btn{width:100%;padding:9px;background:var(--green);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:4px;letter-spacing:0.2px;transition:background 0.18s}
-.calc-btn:hover{background:#0f766e}
-
-/* DISCLAIMER */
-.disclaimer{background:var(--green-light);border-left:3px solid #2dd4bf;border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:8px 12px;font-size:12px;color:var(--text2);line-height:1.5;margin-top:10px}
-
-/* CHART BARS */
-.bar-row{margin-bottom:6px}
-.bar-head{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:4px}
-.bar-head span:last-child{font-weight:600;color:var(--text)}
-.bar-track{background:var(--green-light);border-radius:4px;height:10px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px;background:var(--green);transition:width 0.6s ease}
-
-/* PRO METRICS */
-.metric-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--green-light);font-size:13px}
-.metric-row:last-child{border-bottom:none}
-.metric-key{color:var(--text2)}
-.metric-val{font-weight:600;color:var(--text)}
-.metric-val.green{color:var(--green)}
-
-/* COMPARE TABLE */
-.compare-table{width:100%;border-collapse:collapse;font-size:12px}
-.compare-table th{background:var(--green-light);color:#0d9488;font-weight:700;padding:10px 12px;text-align:left;font-size:11px;letter-spacing:0.3px}
-.compare-table td{padding:9px 12px;border-bottom:1px solid var(--green-light);color:var(--text2)}
-.compare-table tr:last-child td{border-bottom:none}
-.compare-table tr:hover td{background:var(--green-pale)}
-.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px}
-.badge-green{background:var(--green-light);color:#0d9488}
-.badge-gray{background:#f0f0f0;color:#888}
-
-/* TITRATION */
-.tit-row{display:grid;grid-template-columns:60px 80px 1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--green-light);font-size:12px}
-.tit-row:last-child{border-bottom:none}
-.tit-week{font-weight:700;color:var(--green)}
-.tit-dose{font-weight:600;color:var(--text)}
-.tit-note{color:var(--text3)}
-.tit-status{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px}
-.tit-current{background:var(--green);color:#fff}
-.tit-upcoming{background:var(--green-light);color:#0d9488}
-.tit-done{background:#f0f0f0;color:#999}
-
-/* FAQ */
-.faq-item{border-bottom:1px solid var(--border);cursor:pointer}
-.faq-q{display:flex;justify-content:space-between;align-items:center;padding:13px 0;font-size:13px;font-weight:500;color:var(--text)}
-.faq-q .icon{color:var(--green);font-size:18px;line-height:1;transition:transform 0.2s}
-.faq-a{font-size:13px;color:var(--text2);line-height:1.6;padding-bottom:13px;display:none}
-.faq-item.open .faq-a{display:block}
-.faq-item.open .icon{transform:rotate(45deg)}
-
-/* PILLS */
-.pill-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.pill{font-size:11px;padding:4px 10px;border-radius:20px;background:var(--green-light);color:#0d9488;border:1px solid var(--border);font-weight:500}
-
-/* ABOUT */
-.about-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-top:12px}
-.about-section h2{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text);margin-bottom:8px}
-.about-section p{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:6px}
-.about-section p:last-child{margin-bottom:0}
-
-/* NETWORK */
-.network-bar{background:var(--white);border-top:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}
-.network-bar span{color:var(--text3)}
-.network-bar a{color:var(--green);text-decoration:none;font-weight:500}
-.network-bar a:hover{text-decoration:underline}
-
-/* FOOTER */
-footer{background:var(--white);border-top:1px solid var(--border);padding:12px 24px;text-align:center;font-size:12px;color:var(--text3)}
-
-/* ADSENSE */
-.ad-slot{background:var(--green-pale);border:1px dashed var(--border);border-radius:var(--radius-sm);padding:10px;text-align:center;font-size:11px;color:var(--text3);margin:10px 0}
-
-/* RESPONSIVE */
-@media(max-width:640px){
-  .calc-grid{grid-template-columns:1fr}
-  .hero h1{font-size:26px}
-  .tab-btn{padding:12px 14px;font-size:12px}
-  .result-big{font-size:32px}
+.result-item {
+    margin-bottom: 10px;
 }
 </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="logo">GLP1<span>Crack</span></div>
-  <div class="nav-links">
-    <a href="https://wordcrack.pro">WordCrack</a>
-    <a href="https://loancrack.pro">LoanCrack</a>
-    <a href="https://insurancecrack.pro">InsuranceCrack</a>
-  </div>
-  <div class="nav-visitor">
-    <div class="visitor-dot"></div>
-    <span id="visitor-count">—</span> <span data-t="live">live</span>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <h1 data-t="hero-title">Crack your <span>GLP-1</span> journey</h1>
-  <p data-t="hero-sub">Dose calculator, weight loss predictor, titration schedule & macro tracker for Ozempic, Wegovy, Mounjaro & Zepbound. Free, instant, no signup.</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><strong>5</strong> <span data-t="stat-calc">calculators</span></div>
-    <div class="hero-stat"><strong>5</strong> <span data-t="stat-lang">languages</span></div>
-    <div class="hero-stat"><strong data-t="stat-free">Free</strong> <span data-t="stat-nosignup">· no signup</span></div>
-    <div class="hero-stat"><strong>4</strong> <span data-t="stat-drugs">GLP-1 drugs covered</span></div>
-  </div>
-</div>
-
-<!-- LANG + MODE -->
-<div class="lang-bar">
-  <div class="lang-row">
-    <button class="lang-btn active" onclick="setLang('en',this)"><span class="flag">🇺🇸</span> EN</button>
-    <button class="lang-btn" onclick="setLang('fr',this)"><span class="flag">🇫🇷</span> FR</button>
-    <button class="lang-btn" onclick="setLang('de',this)"><span class="flag">🇩🇪</span> DE</button>
-    <button class="lang-btn" onclick="setLang('es',this)"><span class="flag">🇪🇸</span> ES</button>
-    <button class="lang-btn" onclick="setLang('pt',this)"><span class="flag">🇧🇷</span> PT</button>
-  </div>
-  <div class="mode-toggle">
-    <button class="mode-btn active" onclick="setMode('simple',this)" data-t="mode-simple">Simple</button>
-    <button class="mode-btn" onclick="setMode('pro',this)" data-t="mode-pro">Pro</button>
-  </div>
-</div>
-
-<!-- TABS -->
-<div class="tabs-wrap">
-  <button class="tab-btn active" onclick="setTab(0,this)" data-t="tab-dose">💉 Dose</button>
-  <button class="tab-btn" onclick="setTab(1,this)" data-t="tab-weight">📉 Weight Loss</button>
-  <button class="tab-btn" onclick="setTab(2,this)" data-t="tab-tit">📅 Titration</button>
-  <button class="tab-btn" onclick="setTab(3,this)" data-t="tab-macros">🥗 Macros</button>
-  <button class="tab-btn" onclick="setTab(4,this)" data-t="tab-compare">💊 Compare</button>
-</div>
-
-<div class="main">
-  <div class="ad-slot">Advertisement</div>
-
-  <!-- TAB 0: DOSE -->
-  <div class="tab-content" id="tab-0">
-    <div class="calc-grid">
-      <div class="card">
-        <div class="card-label" data-t="your-details">Your Details</div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="medication">Medication</span></div>
-          <select id="d-med" onchange="calcDose()">
-            <option value="ozempic">Ozempic (semaglutide)</option>
-            <option value="wegovy">Wegovy (semaglutide 2.4mg)</option>
-            <option value="mounjaro">Mounjaro (tirzepatide)</option>
-            <option value="zepbound">Zepbound (tirzepatide)</option>
-            <option value="compounded">Compounded semaglutide</option>
-          </select>
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="prescribed-dose">Prescribed dose</span><span class="field-val" id="d-dose-val">0.5 mg</span></div>
-          <input type="range" id="d-dose" min="0.25" max="2.4" step="0.05" value="0.5" oninput="updVal('d-dose-val',this.value+' mg');calcDose()">
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="concentration">Concentration (mg/mL)</span><span class="field-val" id="d-conc-val">1.34 mg/mL</span></div>
-          <input type="range" id="d-conc" min="0.5" max="10" step="0.01" value="1.34" oninput="updVal('d-conc-val',parseFloat(this.value).toFixed(2)+' mg/mL');calcDose()">
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="syringe">Syringe size</span></div>
-          <select id="d-syringe" onchange="calcDose()">
-            <option value="100">1 mL syringe (100 units)</option>
-            <option value="50">0.5 mL syringe (50 units)</option>
-          </select>
-        </div>
-        <div class="field" id="d-pro-fields" style="display:none">
-          <div class="field-row"><span class="field-name" data-t="inject-day">Injection day</span></div>
-          <select id="d-day">
-            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
-            <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
-          </select>
-        </div>
-        <button class="calc-btn" onclick="calcDose()" data-t="calculate">Calculate</button>
-        <div class="disclaimer" data-t="disclaimer">Always follow your doctor's prescribed dose. Never adjust without medical guidance. Educational purposes only.</div>
-      </div>
-
-      <div>
-        <div class="result-card" id="dose-result">
-          <div class="result-top-label" data-t="draw-amount">Draw this amount</div>
-          <div class="result-big" id="d-units">— units</div>
-          <div class="result-sub" id="d-ml">— mL on your syringe</div>
-          <div class="result-grid">
-            <div class="result-mini"><div class="result-mini-label" data-t="dose">Dose</div><div class="result-mini-val" id="d-r-dose">—</div></div>
-            <div class="result-mini"><div class="result-mini-label" data-t="concentration">Conc.</div><div class="result-mini-val" id="d-r-conc">—</div></div>
-            <div class="result-mini" id="d-next-wrap" style="display:none"><div class="result-mini-label" data-t="next-dose">Next dose</div><div class="result-mini-val" id="d-next">—</div></div>
-            <div class="result-mini"><div class="result-mini-label" data-t="formula">Formula</div><div class="result-mini-val" id="d-formula" style="font-size:11px">—</div></div>
-          </div>
-        </div>
-        <div class="card" style="margin-top:12px">
-          <div class="card-label" data-t="drugs-covered">Drugs covered</div>
-          <div class="pill-row">
-            <span class="pill">💉 Ozempic</span>
-            <span class="pill">💉 Wegovy</span>
-            <span class="pill">💉 Mounjaro</span>
-            <span class="pill">💉 Zepbound</span>
-            <span class="pill">💊 Compounded sema</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB 1: WEIGHT LOSS -->
-  <div class="tab-content" id="tab-1" style="display:none">
-    <div class="calc-grid">
-      <div class="card">
-        <div class="card-label" data-t="your-details">Your Details</div>
-        <div class="seg-row" id="w-unit-seg">
-          <button class="seg-btn active" onclick="setUnit('metric',this)">⚖️ kg / cm</button>
-          <button class="seg-btn" onclick="setUnit('imperial',this)">⚖️ lbs / in</button>
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="medication">Medication</span></div>
-          <select id="w-med" onchange="calcWeight()">
-            <option value="wegovy">Wegovy (semaglutide 2.4mg) — avg 16.9% loss</option>
-            <option value="ozempic">Ozempic (semaglutide 1mg) — avg 10.5% loss</option>
-            <option value="mounjaro">Mounjaro / Zepbound (tirzepatide) — avg 22.5% loss</option>
-            <option value="compounded">Compounded semaglutide — avg 14% loss</option>
-          </select>
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="current-weight">Current weight</span><span class="field-val" id="w-weight-val">85 kg</span></div>
-          <input type="range" id="w-weight" min="50" max="250" step="1" value="85" oninput="updWeightVal();calcWeight()">
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="goal-weight">Goal weight</span><span class="field-val" id="w-goal-val">70 kg</span></div>
-          <input type="range" id="w-goal" min="40" max="200" step="1" value="70" oninput="updWeightVal();calcWeight()">
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="height">Height</span><span class="field-val" id="w-height-val">170 cm</span></div>
-          <input type="range" id="w-height" min="140" max="220" step="1" value="170" oninput="updWeightVal();calcWeight()">
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="diet-adherence">Diet adherence</span></div>
-          <select id="w-diet" onchange="calcWeight()">
-            <option value="1.0" data-t="diet-good">Good (calorie deficit)</option>
-            <option value="1.2" data-t="diet-strict">Strict (keto / IF)</option>
-            <option value="0.7" data-t="diet-minimal">Minimal changes</option>
-          </select>
-        </div>
-        <button class="calc-btn" onclick="calcWeight()" data-t="calculate">Calculate</button>
-      </div>
-
-      <div>
-        <div class="result-card">
-          <div class="result-top-label" data-t="projected-loss">Projected weight loss</div>
-          <div class="result-big" id="w-loss">—</div>
-          <div class="result-sub" id="w-trial-note">based on clinical trial data</div>
-          <div class="result-grid">
-            <div class="result-mini"><div class="result-mini-label" data-t="timeline">Timeline</div><div class="result-mini-val" id="w-timeline">—</div></div>
-            <div class="result-mini"><div class="result-mini-label">BMI</div><div class="result-mini-val" id="w-bmi">—</div></div>
-            <div class="result-mini" id="w-cost-wrap" style="display:none"><div class="result-mini-label" data-t="est-cost">Est. monthly cost</div><div class="result-mini-val" id="w-cost">—</div></div>
-            <div class="result-mini" id="w-costpkg-wrap" style="display:none"><div class="result-mini-label" data-t="cost-per-kg">Cost per kg lost</div><div class="result-mini-val" id="w-costpkg">—</div></div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px" id="w-pro-chart" style="display:none">
-          <div class="card-label" data-t="week-projection">Week-by-week projection</div>
-          <div id="w-bars"></div>
-        </div>
-
-        <div class="card" style="margin-top:12px" id="w-pro-metrics" style="display:none">
-          <div class="card-label" data-t="pro-metrics">Pro metrics</div>
-          <div class="metric-row"><span class="metric-key" data-t="fda-eligible">FDA eligibility</span><span class="metric-val green" id="w-fda">—</span></div>
-          <div class="metric-row"><span class="metric-key" data-t="lean-mass">Lean mass risk</span><span class="metric-val" id="w-lean">—</span></div>
-          <div class="metric-row"><span class="metric-key" data-t="compounded-alt">Compounded alt.</span><span class="metric-val green">~$146/mo</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB 2: TITRATION -->
-  <div class="tab-content" id="tab-2" style="display:none">
-    <div class="calc-grid">
-      <div class="card">
-        <div class="card-label" data-t="your-details">Your Details</div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="medication">Medication</span></div>
-          <select id="t-med" onchange="calcTitration()">
-            <option value="sema">Semaglutide (Ozempic / Wegovy)</option>
-            <option value="tirze">Tirzepatide (Mounjaro / Zepbound)</option>
-            <option value="lira">Liraglutide (Saxenda)</option>
-          </select>
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="start-week">Start week</span><span class="field-val" id="t-week-val">Week 1</span></div>
-          <input type="range" id="t-week" min="1" max="20" step="1" value="1" oninput="updVal('t-week-val','Week '+this.value);calcTitration()">
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="current-week">I am currently on week</span><span class="field-val" id="t-current-val">4</span></div>
-          <input type="range" id="t-current" min="1" max="20" step="1" value="4" oninput="updVal('t-current-val',this.value);calcTitration()">
-        </div>
-        <button class="calc-btn" onclick="calcTitration()" data-t="show-schedule">Show Schedule</button>
-      </div>
-
-      <div class="card">
-        <div class="card-label" data-t="titration-schedule">Titration Schedule</div>
-        <div id="t-schedule"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB 3: MACROS -->
-  <div class="tab-content" id="tab-3" style="display:none">
-    <div class="calc-grid">
-      <div class="card">
-        <div class="card-label" data-t="your-details">Your Details</div>
-        <div class="seg-row">
-          <button class="seg-btn active" onclick="setMacroUnit('metric',this)" data-t="metric">Metric</button>
-          <button class="seg-btn" onclick="setMacroUnit('imperial',this)" data-t="imperial">Imperial</button>
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="weight">Weight</span><span class="field-val" id="m-weight-val">80 kg</span></div>
-          <input type="range" id="m-weight" min="40" max="250" step="1" value="80" oninput="updVal('m-weight-val',this.value+' kg');calcMacros()">
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="height">Height</span><span class="field-val" id="m-height-val">170 cm</span></div>
-          <input type="range" id="m-height" min="140" max="220" step="1" value="170" oninput="updVal('m-height-val',this.value+' cm');calcMacros()">
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="age">Age</span><span class="field-val" id="m-age-val">38</span></div>
-          <input type="range" id="m-age" min="18" max="80" step="1" value="38" oninput="updVal('m-age-val',this.value);calcMacros()">
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="sex">Sex</span></div>
-          <select id="m-sex" onchange="calcMacros()">
-            <option value="f">Female</option>
-            <option value="m">Male</option>
-          </select>
-        </div>
-        <div class="field">
-          <div class="field-row"><span class="field-name" data-t="activity">Activity level</span></div>
-          <select id="m-activity" onchange="calcMacros()">
-            <option value="1.2" data-t="sedentary">Sedentary</option>
-            <option value="1.375" data-t="light" selected>Light exercise</option>
-            <option value="1.55" data-t="moderate">Moderate exercise</option>
-            <option value="1.725" data-t="active">Very active</option>
-          </select>
-        </div>
-        <button class="calc-btn" onclick="calcMacros()" data-t="calculate">Calculate</button>
-      </div>
-
-      <div>
-        <div class="result-card">
-          <div class="result-top-label" data-t="daily-targets">Daily targets on GLP-1</div>
-          <div class="result-big" id="m-calories">—</div>
-          <div class="result-sub" data-t="calories-day">calories / day (TDEE − 20%)</div>
-          <div class="result-grid">
-            <div class="result-mini"><div class="result-mini-label" data-t="protein">Protein</div><div class="result-mini-val" id="m-protein">—</div></div>
-            <div class="result-mini"><div class="result-mini-label" data-t="carbs">Carbs</div><div class="result-mini-val" id="m-carbs">—</div></div>
-            <div class="result-mini"><div class="result-mini-label" data-t="fat">Fat</div><div class="result-mini-val" id="m-fat">—</div></div>
-            <div class="result-mini"><div class="result-mini-label" data-t="fiber">Fiber</div><div class="result-mini-val" id="m-fiber">—</div></div>
-          </div>
-        </div>
-        <div class="card" style="margin-top:12px">
-          <div class="card-label" data-t="macro-breakdown">Macro breakdown</div>
-          <div id="m-bars"></div>
-          <div class="disclaimer" style="margin-top:10px" data-t="macro-note">On GLP-1, prioritise protein to preserve muscle mass. Aim for 1.4–2.0g per kg of body weight.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB 4: COMPARE -->
-  <div class="tab-content" id="tab-4" style="display:none">
+<div class="container">
     <div class="card">
-      <div class="card-label" data-t="drug-comparison">Drug comparison</div>
-      <div style="overflow-x:auto">
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th data-t="drug">Drug</th>
-              <th data-t="active-ingredient">Active ingredient</th>
-              <th data-t="avg-loss">Avg weight loss</th>
-              <th data-t="trial">Trial</th>
-              <th data-t="weekly-dose">Weekly dose</th>
-              <th data-t="monthly-cost">Est. monthly cost</th>
-              <th data-t="type">Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Wegovy</strong></td><td>Semaglutide</td><td><strong style="color:var(--green)">16.9%</strong></td><td>STEP-1</td><td>0.25→2.4 mg</td><td>~$1,350</td><td><span class="badge badge-green">Weight loss</span></td></tr>
-            <tr><td><strong>Ozempic</strong></td><td>Semaglutide</td><td>10.5%</td><td>SUSTAIN</td><td>0.25→1.0 mg</td><td>~$900</td><td><span class="badge badge-gray">Diabetes</span></td></tr>
-            <tr><td><strong>Mounjaro</strong></td><td>Tirzepatide</td><td><strong style="color:var(--green)">22.5%</strong></td><td>SURMOUNT-1</td><td>2.5→15 mg</td><td>~$1,000</td><td><span class="badge badge-gray">Diabetes</span></td></tr>
-            <tr><td><strong>Zepbound</strong></td><td>Tirzepatide</td><td>22.5%</td><td>SURMOUNT-1</td><td>2.5→15 mg</td><td>~$550</td><td><span class="badge badge-green">Weight loss</span></td></tr>
-            <tr><td><strong>Compounded sema</strong></td><td>Semaglutide</td><td>~14%</td><td>—</td><td>Custom</td><td>~$146</td><td><span class="badge badge-green">Affordable alt.</span></td></tr>
-          </tbody>
-        </table>
-      </div>
+
+        <h1>GLP-1 Protein Calculator</h1>
+
+        <label>Weight (kg)</label>
+        <input type="number" id="weight" placeholder="78">
+
+        <label>Age</label>
+        <input type="number" id="age" placeholder="52">
+
+        <label>Gender</label>
+        <select id="gender">
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+
+        <label>Activity Level</label>
+        <select id="activity">
+            <option value="1.4">Low</option>
+            <option value="1.7">Moderate</option>
+            <option value="2.0">High</option>
+        </select>
+
+        <button onclick="calculateProtein()">
+            Calculate
+        </button>
+
+        <div class="results" id="results">
+
+            <div class="result-item">
+                <strong>Daily Protein:</strong>
+                <span id="protein"></span> g
+            </div>
+
+            <div class="result-item">
+                <strong>Water Intake:</strong>
+                <span id="water"></span> L
+            </div>
+
+            <div class="result-item">
+                <strong>BMI:</strong>
+                <span id="bmi"></span>
+            </div>
+
+            <div class="result-item">
+                <strong>Muscle Preservation Score:</strong>
+                <span id="score"></span>%
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="card" style="margin-top:16px">
-      <div class="card-label" data-t="faq">FAQ</div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><span data-t="faq1-q">How much weight can I lose on Wegovy?</span><span class="icon">+</span></div>
-        <div class="faq-a" data-t="faq1-a">Clinical trials (STEP-1) show Wegovy users lose an average of 16.9% of body weight over 68 weeks. For an 85 kg person that's ~14.4 kg. Results vary based on diet, exercise, and individual metabolism.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><span data-t="faq2-q">Ozempic vs Mounjaro — which is better for weight loss?</span><span class="icon">+</span></div>
-        <div class="faq-a" data-t="faq2-a">Head-to-head trials (SURMOUNT-5) show tirzepatide (Mounjaro/Zepbound) produces greater average weight loss (~22.5%) than semaglutide (~16.9%). However, best choice depends on insurance, cost, and your doctor's recommendation.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><span data-t="faq3-q">What is compounded semaglutide?</span><span class="icon">+</span></div>
-        <div class="faq-a" data-t="faq3-a">Compounded semaglutide is a pharmacy-prepared version of the active ingredient in Ozempic/Wegovy. It can cost as little as $146/month vs ~$1,350 for branded Wegovy. Note: FDA has raised safety concerns about unapproved compounded versions — always consult your doctor.</div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><span data-t="faq4-q">How long does it take to see results?</span><span class="icon">+</span></div>
-        <div class="faq-a" data-t="faq4-a">Most people notice weight loss within 4–8 weeks, even at the lowest starting dose. Significant results (5%+ body weight) typically appear around weeks 12–16 as the dose escalates.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <div class="about-section">
-    <h2 data-t="about-title">About GLP1Crack</h2>
-    <p data-t="about-1">GLP1Crack is a free GLP-1 calculator for Ozempic, Wegovy, Mounjaro, Zepbound and compounded semaglutide and tirzepatide. Calculate syringe units, weight loss timeline, titration schedule and daily macros. Available in 5 languages. Free, no signup, works on all devices.</p>
-    <p data-t="about-2">Always consult your healthcare provider before adjusting your dose. This tool is for educational purposes only and does not constitute medical advice.</p>
-  </div>
 </div>
-
-<!-- NETWORK BAR -->
-<div class="network-bar">
-  <span data-t="more-tools">More free tools:</span>
-  <a href="https://wordcrack.pro">WordCrack</a> ·
-  <a href="https://loancrack.pro">LoanCrack</a> ·
-  <a href="https://insurancecrack.pro">InsuranceCrack</a>
-</div>
-
-<footer>
-  <p>© 2026 GLP1Crack · <span data-t="educational">Educational tool only — not medical advice</span> · <a href="https://glp1crack.pro" style="color:var(--green)">glp1crack.pro</a></p>
-</footer>
 
 <script>
-// ─── TRANSLATIONS ───────────────────────────────────────────────────────
-const T = {
-  en:{
-    'hero-title':'Crack your <span>GLP-1</span> journey',
-    'hero-sub':'Dose calculator, weight loss predictor, titration schedule & macro tracker for Ozempic, Wegovy, Mounjaro & Zepbound. Free, instant, no signup.',
-    'stat-calc':'calculators','stat-lang':'languages','stat-free':'Free','stat-nosignup':'· no signup','stat-drugs':'GLP-1 drugs covered',
-    'live':'live','mode-simple':'Simple','mode-pro':'Pro',
-    'tab-dose':'💉 Dose','tab-weight':'📉 Weight Loss','tab-tit':'📅 Titration','tab-macros':'🥗 Macros','tab-compare':'💊 Compare',
-    'your-details':'Your Details','medication':'Medication','prescribed-dose':'Prescribed dose','concentration':'Concentration (mg/mL)',
-    'syringe':'Syringe size','inject-day':'Injection day','calculate':'Calculate','show-schedule':'Show Schedule',
-    'disclaimer':'Always follow your doctor\'s prescribed dose. Never adjust without medical guidance. Educational purposes only.',
-    'draw-amount':'Draw this amount','dose':'Dose','next-dose':'Next dose','formula':'Formula','drugs-covered':'Drugs covered',
-    'current-weight':'Current weight','goal-weight':'Goal weight','height':'Height','diet-adherence':'Diet adherence',
-    'metric':'Metric (kg/cm)','imperial':'Imperial (lb/in)','projected-loss':'Projected weight loss','timeline':'Timeline',
-    'est-cost':'Est. monthly cost','cost-per-kg':'Cost per kg lost','week-projection':'Week-by-week projection',
-    'pro-metrics':'Pro metrics','fda-eligible':'FDA eligibility','lean-mass':'Lean mass risk','compounded-alt':'Compounded alt.',
-    'diet-good':'Good (calorie deficit)','diet-strict':'Strict (keto / IF)','diet-minimal':'Minimal changes',
-    'start-week':'Start from week','current-week':'I am on week','titration-schedule':'Titration Schedule',
-    'weight':'Weight','age':'Age','sex':'Sex','activity':'Activity level','daily-targets':'Daily targets on GLP-1',
-    'calories-day':'calories / day (TDEE − 20%)','protein':'Protein','carbs':'Carbs','fat':'Fat','fiber':'Fiber',
-    'macro-breakdown':'Macro breakdown','macro-note':'On GLP-1, prioritise protein to preserve muscle mass. Aim for 1.4–2.0g per kg of body weight.',
-    'drug-comparison':'Drug comparison','drug':'Drug','active-ingredient':'Active ingredient','avg-loss':'Avg weight loss',
-    'trial':'Trial','weekly-dose':'Weekly dose','monthly-cost':'Est. monthly cost','type':'Type','faq':'FAQ',
-    'faq1-q':'How much weight can I lose on Wegovy?','faq1-a':'Clinical trials (STEP-1) show Wegovy users lose an average of 16.9% of body weight over 68 weeks. For an 85 kg person that\'s ~14.4 kg. Results vary based on diet, exercise, and individual metabolism.',
-    'faq2-q':'Ozempic vs Mounjaro — which is better for weight loss?','faq2-a':'Head-to-head trials (SURMOUNT-5) show tirzepatide produces greater average weight loss (~22.5%) than semaglutide (~16.9%). Best choice depends on insurance, cost, and your doctor\'s recommendation.',
-    'faq3-q':'What is compounded semaglutide?','faq3-a':'Compounded semaglutide is a pharmacy-prepared version of Ozempic/Wegovy\'s active ingredient. It can cost as little as $146/month vs ~$1,350 for branded Wegovy. Always consult your doctor.',
-    'faq4-q':'How long does it take to see results?','faq4-a':'Most people notice weight loss within 4–8 weeks. Significant results (5%+ body weight) typically appear around weeks 12–16 as the dose escalates.',
-    'about-title':'About GLP1Crack','about-1':'GLP1Crack is a free calculator for Ozempic, Wegovy, Mounjaro, Zepbound and compounded semaglutide. Available in 5 languages. Free, no signup, works on all devices.',
-    'about-2':'Always consult your healthcare provider before adjusting your dose. This tool is for educational purposes only.',
-    'more-tools':'More free tools:','educational':'Educational tool only — not medical advice',
-    'sedentary':'Sedentary','light':'Light exercise','moderate':'Moderate exercise','active':'Very active',
-    'female':'Female','male':'Male'
-  },
-  fr:{
-    'hero-title':'Maîtrisez votre <span>parcours GLP-1</span>',
-    'hero-sub':'Calculateur de dose, prédicteur de perte de poids, calendrier de titration et suivi des macros pour Ozempic, Wegovy, Mounjaro & Zepbound.',
-    'stat-calc':'calculateurs','stat-lang':'langues','stat-free':'Gratuit','stat-nosignup':'· sans inscription','stat-drugs':'médicaments GLP-1',
-    'live':'en direct','mode-simple':'Simple','mode-pro':'Pro',
-    'tab-dose':'💉 Dose','tab-weight':'📉 Perte de poids','tab-tit':'📅 Titration','tab-macros':'🥗 Macros','tab-compare':'💊 Comparaison',
-    'your-details':'Vos données','medication':'Médicament','prescribed-dose':'Dose prescrite','concentration':'Concentration (mg/mL)',
-    'syringe':'Taille de seringue','inject-day':'Jour d\'injection','calculate':'Calculer','show-schedule':'Voir le calendrier',
-    'disclaimer':'Suivez toujours la dose prescrite par votre médecin. Ne modifiez jamais sans avis médical. À titre éducatif uniquement.',
-    'draw-amount':'Tirez cette quantité','dose':'Dose','next-dose':'Prochaine dose','formula':'Formule','drugs-covered':'Médicaments couverts',
-    'current-weight':'Poids actuel','goal-weight':'Poids cible','height':'Taille','diet-adherence':'Adhérence alimentaire',
-    'metric':'Métrique (kg/cm)','imperial':'Impérial (lb/po)','projected-loss':'Perte de poids prévue','timeline':'Durée estimée',
-    'est-cost':'Coût mensuel estimé','cost-per-kg':'Coût par kg perdu','week-projection':'Projection hebdomadaire',
-    'pro-metrics':'Métriques Pro','fda-eligible':'Éligibilité FDA','lean-mass':'Risque masse maigre','compounded-alt':'Alternative composée',
-    'diet-good':'Bon (déficit calorique)','diet-strict':'Strict (kéto / JI)','diet-minimal':'Changements minimes',
-    'start-week':'Commencer à la semaine','current-week':'Je suis à la semaine','titration-schedule':'Calendrier de titration',
-    'weight':'Poids','age':'Âge','sex':'Sexe','activity':'Niveau d\'activité','daily-targets':'Objectifs quotidiens sur GLP-1',
-    'calories-day':'calories / jour (TDEE − 20%)','protein':'Protéines','carbs':'Glucides','fat':'Lipides','fiber':'Fibres',
-    'macro-breakdown':'Répartition des macros','macro-note':'Sous GLP-1, privilégiez les protéines pour préserver la masse musculaire. Visez 1,4–2,0g par kg de poids corporel.',
-    'drug-comparison':'Comparaison des médicaments','drug':'Médicament','active-ingredient':'Principe actif','avg-loss':'Perte moy.',
-    'trial':'Essai','weekly-dose':'Dose hebdomadaire','monthly-cost':'Coût mensuel estimé','type':'Type','faq':'FAQ',
-    'faq1-q':'Combien de poids puis-je perdre avec Wegovy ?','faq1-a':'Les essais cliniques (STEP-1) montrent une perte moyenne de 16,9% du poids corporel sur 68 semaines. Pour 85 kg, c\'est ~14,4 kg.',
-    'faq2-q':'Ozempic vs Mounjaro — lequel est le meilleur ?','faq2-a':'Les essais comparatifs (SURMOUNT-5) montrent que le tirzépatide produit une perte de poids plus importante (~22,5%) que le sémaglutide (~16,9%).',
-    'faq3-q':'Qu\'est-ce que le sémaglutide composé ?','faq3-a':'Le sémaglutide composé est une version préparée en pharmacie de l\'ingrédient actif d\'Ozempic/Wegovy. Il peut coûter ~146$/mois contre ~1 350$ pour Wegovy. Consultez toujours votre médecin.',
-    'faq4-q':'Combien de temps faut-il pour voir des résultats ?','faq4-a':'La plupart des gens remarquent une perte de poids dans les 4 à 8 semaines. Des résultats significatifs (5%+ du poids) apparaissent généralement vers les semaines 12–16.',
-    'about-title':'À propos de GLP1Crack','about-1':'GLP1Crack est un calculateur GLP-1 gratuit pour Ozempic, Wegovy, Mounjaro, Zepbound. Disponible en 5 langues. Gratuit, sans inscription.',
-    'about-2':'Consultez toujours votre professionnel de santé avant de modifier votre dose. Cet outil est à titre éducatif uniquement.',
-    'more-tools':'Plus d\'outils gratuits :','educational':'Outil éducatif uniquement — pas de conseil médical',
-    'sedentary':'Sédentaire','light':'Exercice léger','moderate':'Exercice modéré','active':'Très actif',
-    'female':'Femme','male':'Homme'
-  },
-  de:{
-    'hero-title':'Meistern Sie Ihre <span>GLP-1 Reise</span>',
-    'hero-sub':'Dosierungsrechner, Gewichtsabnahme-Prognose, Titrationszeitplan und Makro-Tracker für Ozempic, Wegovy, Mounjaro & Zepbound.',
-    'stat-calc':'Rechner','stat-lang':'Sprachen','stat-free':'Kostenlos','stat-nosignup':'· keine Anmeldung','stat-drugs':'GLP-1 Medikamente',
-    'live':'live','mode-simple':'Einfach','mode-pro':'Pro',
-    'tab-dose':'💉 Dosis','tab-weight':'📉 Gewichtsverlust','tab-tit':'📅 Titration','tab-macros':'🥗 Makros','tab-compare':'💊 Vergleich',
-    'your-details':'Ihre Daten','medication':'Medikament','prescribed-dose':'Verschriebene Dosis','concentration':'Konzentration (mg/mL)',
-    'syringe':'Spritzengröße','inject-day':'Injektionstag','calculate':'Berechnen','show-schedule':'Zeitplan anzeigen',
-    'disclaimer':'Folgen Sie immer der verschriebenen Dosis Ihres Arztes. Ändern Sie niemals ohne ärztliche Anleitung. Nur zu Bildungszwecken.',
-    'draw-amount':'Diese Menge aufziehen','dose':'Dosis','next-dose':'Nächste Dosis','formula':'Formel','drugs-covered':'Abgedeckte Medikamente',
-    'current-weight':'Aktuelles Gewicht','goal-weight':'Zielgewicht','height':'Größe','diet-adherence':'Diät-Einhaltung',
-    'metric':'Metrisch (kg/cm)','imperial':'Imperial (lb/in)','projected-loss':'Prognostizierter Gewichtsverlust','timeline':'Zeitrahmen',
-    'est-cost':'Geschätzte Monatskosten','cost-per-kg':'Kosten pro kg Verlust','week-projection':'Wöchentliche Prognose',
-    'pro-metrics':'Pro-Metriken','fda-eligible':'FDA-Berechtigung','lean-mass':'Magermasse-Risiko','compounded-alt':'Compounded Alternative',
-    'diet-good':'Gut (Kaloriendefizit)','diet-strict':'Streng (Keto / IF)','diet-minimal':'Minimale Änderungen',
-    'start-week':'Starten bei Woche','current-week':'Ich bin in Woche','titration-schedule':'Titrationsplan',
-    'weight':'Gewicht','age':'Alter','sex':'Geschlecht','activity':'Aktivitätsniveau','daily-targets':'Tägliche Ziele bei GLP-1',
-    'calories-day':'Kalorien / Tag (TDEE − 20%)','protein':'Protein','carbs':'Kohlenhydrate','fat':'Fett','fiber':'Ballaststoffe',
-    'macro-breakdown':'Makro-Aufschlüsselung','macro-note':'Priorisieren Sie bei GLP-1 Protein zum Erhalt der Muskelmasse. Ziel: 1,4–2,0g pro kg Körpergewicht.',
-    'drug-comparison':'Medikamentenvergleich','drug':'Medikament','active-ingredient':'Wirkstoff','avg-loss':'Durchschn. Gewichtsverlust',
-    'trial':'Studie','weekly-dose':'Wöchentliche Dosis','monthly-cost':'Monatliche Kosten','type':'Typ','faq':'FAQ',
-    'faq1-q':'Wie viel Gewicht kann ich mit Wegovy verlieren?','faq1-a':'Klinische Studien (STEP-1) zeigen einen durchschnittlichen Gewichtsverlust von 16,9% über 68 Wochen. Bei 85 kg sind das ~14,4 kg.',
-    'faq2-q':'Ozempic vs Mounjaro — was ist besser?','faq2-a':'Direkte Vergleichsstudien (SURMOUNT-5) zeigen, dass Tirzepatid einen größeren Gewichtsverlust (~22,5%) als Semaglutid (~16,9%) erzielt.',
-    'faq3-q':'Was ist compoundiertes Semaglutid?','faq3-a':'Compoundiertes Semaglutid ist eine apothekenseitig hergestellte Version des Wirkstoffs. Es kann ~146$/Monat kosten gegenüber ~1.350$ für Wegovy.',
-    'faq4-q':'Wie lange dauert es, bis Ergebnisse sichtbar sind?','faq4-a':'Die meisten Menschen bemerken einen Gewichtsverlust innerhalb von 4–8 Wochen. Signifikante Ergebnisse erscheinen typischerweise in den Wochen 12–16.',
-    'about-title':'Über GLP1Crack','about-1':'GLP1Crack ist ein kostenloser GLP-1 Rechner für Ozempic, Wegovy, Mounjaro, Zepbound. In 5 Sprachen verfügbar. Kostenlos, keine Anmeldung.',
-    'about-2':'Konsultieren Sie immer Ihren Arzt, bevor Sie Ihre Dosis anpassen. Nur zu Bildungszwecken.',
-    'more-tools':'Weitere kostenlose Tools:','educational':'Nur Bildungszwecke — keine medizinische Beratung',
-    'sedentary':'Sitzend','light':'Leichte Bewegung','moderate':'Mäßige Bewegung','active':'Sehr aktiv',
-    'female':'Weiblich','male':'Männlich'
-  },
-  es:{
-    'hero-title':'Domina tu <span>viaje con GLP-1</span>',
-    'hero-sub':'Calculadora de dosis, predictor de pérdida de peso, calendario de titulación y seguimiento de macros para Ozempic, Wegovy, Mounjaro & Zepbound.',
-    'stat-calc':'calculadoras','stat-lang':'idiomas','stat-free':'Gratis','stat-nosignup':'· sin registro','stat-drugs':'medicamentos GLP-1',
-    'live':'en vivo','mode-simple':'Simple','mode-pro':'Pro',
-    'tab-dose':'💉 Dosis','tab-weight':'📉 Pérdida de peso','tab-tit':'📅 Titulación','tab-macros':'🥗 Macros','tab-compare':'💊 Comparar',
-    'your-details':'Tus datos','medication':'Medicamento','prescribed-dose':'Dosis prescrita','concentration':'Concentración (mg/mL)',
-    'syringe':'Tamaño de jeringa','inject-day':'Día de inyección','calculate':'Calcular','show-schedule':'Ver calendario',
-    'disclaimer':'Sigue siempre la dosis prescrita por tu médico. Nunca ajustes sin orientación médica. Solo con fines educativos.',
-    'draw-amount':'Extrae esta cantidad','dose':'Dosis','next-dose':'Próxima dosis','formula':'Fórmula','drugs-covered':'Medicamentos cubiertos',
-    'current-weight':'Peso actual','goal-weight':'Peso objetivo','height':'Altura','diet-adherence':'Adherencia a la dieta',
-    'metric':'Métrico (kg/cm)','imperial':'Imperial (lb/in)','projected-loss':'Pérdida de peso proyectada','timeline':'Plazo estimado',
-    'est-cost':'Costo mensual estimado','cost-per-kg':'Costo por kg perdido','week-projection':'Proyección semanal',
-    'pro-metrics':'Métricas Pro','fda-eligible':'Elegibilidad FDA','lean-mass':'Riesgo masa muscular','compounded-alt':'Alternativa compuesta',
-    'diet-good':'Buena (déficit calórico)','diet-strict':'Estricta (keto / AI)','diet-minimal':'Cambios mínimos',
-    'start-week':'Empezar en semana','current-week':'Estoy en la semana','titration-schedule':'Calendario de titulación',
-    'weight':'Peso','age':'Edad','sex':'Sexo','activity':'Nivel de actividad','daily-targets':'Objetivos diarios en GLP-1',
-    'calories-day':'calorías / día (TDEE − 20%)','protein':'Proteína','carbs':'Carbohidratos','fat':'Grasa','fiber':'Fibra',
-    'macro-breakdown':'Distribución de macros','macro-note':'Con GLP-1, prioriza las proteínas para preservar la masa muscular. Apunta a 1,4–2,0g por kg de peso corporal.',
-    'drug-comparison':'Comparación de medicamentos','drug':'Medicamento','active-ingredient':'Principio activo','avg-loss':'Pérdida prom.',
-    'trial':'Ensayo','weekly-dose':'Dosis semanal','monthly-cost':'Costo mensual','type':'Tipo','faq':'FAQ',
-    'faq1-q':'¿Cuánto peso puedo perder con Wegovy?','faq1-a':'Los ensayos clínicos (STEP-1) muestran una pérdida media del 16,9% del peso corporal en 68 semanas.',
-    'faq2-q':'Ozempic vs Mounjaro — ¿cuál es mejor?','faq2-a':'Ensayos directos (SURMOUNT-5) muestran que tirzepatida produce mayor pérdida (~22,5%) que semaglutida (~16,9%).',
-    'faq3-q':'¿Qué es la semaglutida compuesta?','faq3-a':'Es una versión preparada en farmacia del ingrediente activo de Ozempic/Wegovy. Puede costar ~$146/mes frente a ~$1.350 de Wegovy de marca.',
-    'faq4-q':'¿Cuánto tiempo tarda en verse resultados?','faq4-a':'La mayoría nota pérdida de peso en 4–8 semanas. Resultados significativos (5%+ del peso) aparecen hacia las semanas 12–16.',
-    'about-title':'Sobre GLP1Crack','about-1':'GLP1Crack es una calculadora GLP-1 gratuita para Ozempic, Wegovy, Mounjaro, Zepbound. Disponible en 5 idiomas. Gratis, sin registro.',
-    'about-2':'Consulta siempre a tu médico antes de ajustar tu dosis. Esta herramienta es solo con fines educativos.',
-    'more-tools':'Más herramientas gratuitas:','educational':'Solo fines educativos — no es asesoramiento médico',
-    'sedentary':'Sedentario','light':'Ejercicio ligero','moderate':'Ejercicio moderado','active':'Muy activo',
-    'female':'Mujer','male':'Hombre'
-  },
-  pt:{
-    'hero-title':'Domine sua <span>jornada GLP-1</span>',
-    'hero-sub':'Calculadora de dose, preditor de perda de peso, calendário de titulação e rastreador de macros para Ozempic, Wegovy, Mounjaro & Zepbound.',
-    'stat-calc':'calculadoras','stat-lang':'idiomas','stat-free':'Grátis','stat-nosignup':'· sem cadastro','stat-drugs':'medicamentos GLP-1',
-    'live':'ao vivo','mode-simple':'Simples','mode-pro':'Pro',
-    'tab-dose':'💉 Dose','tab-weight':'📉 Perda de Peso','tab-tit':'📅 Titulação','tab-macros':'🥗 Macros','tab-compare':'💊 Comparar',
-    'your-details':'Seus dados','medication':'Medicamento','prescribed-dose':'Dose prescrita','concentration':'Concentração (mg/mL)',
-    'syringe':'Tamanho da seringa','inject-day':'Dia da injeção','calculate':'Calcular','show-schedule':'Ver calendário',
-    'disclaimer':'Sempre siga a dose prescrita pelo seu médico. Nunca ajuste sem orientação médica. Apenas para fins educacionais.',
-    'draw-amount':'Aspire esta quantidade','dose':'Dose','next-dose':'Próxima dose','formula':'Fórmula','drugs-covered':'Medicamentos cobertos',
-    'current-weight':'Peso atual','goal-weight':'Peso alvo','height':'Altura','diet-adherence':'Adesão à dieta',
-    'metric':'Métrico (kg/cm)','imperial':'Imperial (lb/in)','projected-loss':'Perda de peso projetada','timeline':'Prazo estimado',
-    'est-cost':'Custo mensal estimado','cost-per-kg':'Custo por kg perdido','week-projection':'Projeção semana a semana',
-    'pro-metrics':'Métricas Pro','fda-eligible':'Elegibilidade FDA','lean-mass':'Risco massa magra','compounded-alt':'Alternativa manipulada',
-    'diet-good':'Boa (déficit calórico)','diet-strict':'Rígida (keto / JI)','diet-minimal':'Mudanças mínimas',
-    'start-week':'Começar na semana','current-week':'Estou na semana','titration-schedule':'Calendário de titulação',
-    'weight':'Peso','age':'Idade','sex':'Sexo','activity':'Nível de atividade','daily-targets':'Metas diárias no GLP-1',
-    'calories-day':'calorias / dia (TDEE − 20%)','protein':'Proteína','carbs':'Carboidratos','fat':'Gordura','fiber':'Fibra',
-    'macro-breakdown':'Distribuição de macros','macro-note':'No GLP-1, priorize proteínas para preservar a massa muscular. Meta: 1,4–2,0g por kg de peso corporal.',
-    'drug-comparison':'Comparação de medicamentos','drug':'Medicamento','active-ingredient':'Ingrediente ativo','avg-loss':'Perda média',
-    'trial':'Estudo','weekly-dose':'Dose semanal','monthly-cost':'Custo mensal','type':'Tipo','faq':'FAQ',
-    'faq1-q':'Quanto peso posso perder com Wegovy?','faq1-a':'Ensaios clínicos (STEP-1) mostram perda média de 16,9% do peso corporal em 68 semanas.',
-    'faq2-q':'Ozempic vs Mounjaro — qual é melhor?','faq2-a':'Estudos diretos (SURMOUNT-5) mostram que a tirzepatida produz maior perda (~22,5%) que a semaglutida (~16,9%).',
-    'faq3-q':'O que é semaglutida manipulada?','faq3-a':'É uma versão preparada em farmácia do ingrediente ativo do Ozempic/Wegovy. Pode custar ~$146/mês vs ~$1.350 do Wegovy de marca.',
-    'faq4-q':'Quanto tempo leva para ver resultados?','faq4-a':'A maioria das pessoas nota perda de peso em 4–8 semanas. Resultados significativos (5%+ do peso) aparecem tipicamente nas semanas 12–16.',
-    'about-title':'Sobre o GLP1Crack','about-1':'GLP1Crack é uma calculadora GLP-1 gratuita para Ozempic, Wegovy, Mounjaro, Zepbound. Disponível em 5 idiomas. Grátis, sem cadastro.',
-    'about-2':'Sempre consulte seu médico antes de ajustar sua dose. Esta ferramenta é apenas para fins educacionais.',
-    'more-tools':'Mais ferramentas gratuitas:','educational':'Apenas fins educacionais — não é aconselhamento médico',
-    'sedentary':'Sedentário','light':'Exercício leve','moderate':'Exercício moderado','active':'Muito ativo',
-    'female':'Feminino','male':'Masculino'
-  }
-};
 
-let lang='en', mode='simple', currentTab=0;
+function calculateProtein() {
 
-function t(key){return T[lang][key]||T['en'][key]||key;}
+    let weight = parseFloat(document.getElementById("weight").value);
 
-function setLang(l,btn){
-  lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  applyTranslations();
-  refreshAll();
-}
-
-function applyTranslations(){
-  document.querySelectorAll('[data-t]').forEach(el=>{
-    const key=el.getAttribute('data-t');
-    const val=t(key);
-    if(el.tagName==='BUTTON'||el.tagName==='SPAN'||el.tagName==='DIV'||el.tagName==='P'||el.tagName==='A'){
-      if(key==='hero-title'){el.innerHTML=val;}else{el.textContent=val;}
+    if (!weight || weight <= 0) {
+        alert("Please enter your weight.");
+        return;
     }
-  });
-  // hero title special
-  document.querySelector('.hero h1').innerHTML=t('hero-title');
+
+    let protein = (weight * 1.8).toFixed(0);
+    let water = (weight * 0.035).toFixed(1);
+
+    let height = 1.65;
+    let bmi = (weight / (height * height)).toFixed(1);
+
+    let score = 90;
+
+    document.getElementById("protein").innerText = protein;
+    document.getElementById("water").innerText = water;
+    document.getElementById("bmi").innerText = bmi;
+    document.getElementById("score").innerText = score;
+
+    document.getElementById("results").style.display = "block";
 }
 
-function setMode(m,btn){
-  mode=m;
-  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  // show/hide pro fields
-  const pf=document.getElementById('d-pro-fields');
-  if(pf) pf.style.display=mode==='pro'?'block':'none';
-  const dn=document.getElementById('d-next-wrap');
-  if(dn) dn.style.display=mode==='pro'?'flex':'none';
-  const wcc=document.getElementById('w-cost-wrap');
-  if(wcc) wcc.style.display=mode==='pro'?'flex':'none';
-  const wcpk=document.getElementById('w-costpkg-wrap');
-  if(wcpk) wcpk.style.display=mode==='pro'?'flex':'none';
-  const wpc=document.getElementById('w-pro-chart');
-  if(wpc) wpc.style.display=mode==='pro'?'block':'none';
-  const wpm=document.getElementById('w-pro-metrics');
-  if(wpm) wpm.style.display=mode==='pro'?'block':'none';
-  refreshAll();
-}
-
-function setTab(idx,btn){
-  currentTab=idx;
-  document.querySelectorAll('.tab-content').forEach((el,i)=>el.style.display=i===idx?'block':'none');
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-function updVal(id,val){document.getElementById(id).textContent=val;}
-
-function refreshAll(){calcDose();calcWeight();calcTitration();calcMacros();}
-
-// ─── DOSE CALC ───────────────────────────────────────────────────────────
-function calcDose(){
-  const dose=parseFloat(document.getElementById('d-dose').value);
-  const conc=parseFloat(document.getElementById('d-conc').value);
-  const syr=parseInt(document.getElementById('d-syringe').value);
-  const ml=dose/conc;
-  const units=Math.round(ml*100);
-  document.getElementById('d-units').textContent=units+' units';
-  document.getElementById('d-ml').textContent=ml.toFixed(2)+' mL on your '+syr+'-unit syringe';
-  document.getElementById('d-r-dose').textContent=dose.toFixed(2)+' mg';
-  document.getElementById('d-r-conc').textContent=conc.toFixed(2)+' mg/mL';
-  document.getElementById('d-formula').textContent='('+dose.toFixed(2)+' ÷ '+conc.toFixed(2)+') × 100';
-  if(mode==='pro'){
-    const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const today=new Date();
-    const injDay=document.getElementById('d-day');
-    if(injDay){
-      const target=(days.indexOf(injDay.value)+7-today.getDay())%7||7;
-      const next=new Date(today.getTime()+target*86400000);
-      document.getElementById('d-next').textContent=next.toLocaleDateString('en',{month:'short',day:'numeric'});
-    }
-  }
-}
-
-// ─── WEIGHT CALC ─────────────────────────────────────────────────────────
-const medLoss={wegovy:0.169,ozempic:0.105,mounjaro:0.225,compounded:0.14};
-const medTrial={wegovy:'STEP-1 (68 wks)',ozempic:'SUSTAIN (avg)',mounjaro:'SURMOUNT-1 (72 wks)',compounded:'Est. avg'};
-const medCost={wegovy:1350,ozempic:900,mounjaro:1000,compounded:146};
-let weightUnit='metric';
-
-function setUnit(u,btn){
-  weightUnit=u;
-  document.querySelectorAll('#w-unit-seg .seg-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  updWeightVal();calcWeight();
-}
-
-function updWeightVal(){
-  const wu=document.getElementById('w-weight').value;
-  const gu=document.getElementById('w-goal').value;
-  const hu=document.getElementById('w-height').value;
-  if(weightUnit==='metric'){
-    updVal('w-weight-val',wu+' kg');
-    updVal('w-goal-val',gu+' kg');
-    updVal('w-height-val',hu+' cm');
-  } else {
-    updVal('w-weight-val',Math.round(wu*2.205)+' lb');
-    updVal('w-goal-val',Math.round(gu*2.205)+' lb');
-    updVal('w-height-val',Math.round(hu/2.54)+' in');
-  }
-}
-
-function calcWeight(){
-  const wkg=parseFloat(document.getElementById('w-weight').value);
-  const gkg=parseFloat(document.getElementById('w-goal').value);
-  const hcm=parseFloat(document.getElementById('w-height').value);
-  const med=document.getElementById('w-med').value;
-  const diet=parseFloat(document.getElementById('w-diet').value);
-  const pct=medLoss[med]*diet;
-  const projLoss=wkg*pct;
-  const wksRaw=68*(projLoss/Math.max(projLoss,1));
-  const wks=Math.round(Math.max(12,Math.min(104,68*(gkg<wkg-projLoss?1:(wkg-gkg)/projLoss))));
-  const bmiNow=(wkg/((hcm/100)**2)).toFixed(1);
-  const bmiGoal=(gkg/((hcm/100)**2)).toFixed(1);
-  const lossDisp=weightUnit==='metric'?projLoss.toFixed(1)+' kg':Math.round(projLoss*2.205)+' lb';
-  document.getElementById('w-loss').textContent='−'+lossDisp;
-  document.getElementById('w-timeline').textContent='~'+wks+' wks';
-  document.getElementById('w-bmi').textContent=bmiNow+' → '+bmiGoal;
-  document.getElementById('w-trial-note').textContent='based on '+medTrial[med];
-  if(mode==='pro'){
-    const cost=medCost[med];
-    const months=Math.ceil(wks/4.3);
-    document.getElementById('w-cost').textContent='$'+cost.toLocaleString()+'/mo';
-    const cpk=Math.round(cost*months/projLoss);
-    document.getElementById('w-costpkg').textContent='$'+cpk+'/kg';
-    // bars
-    const bars=document.getElementById('w-bars');
-    const pts=[12,24,40,wks];
-    bars.innerHTML=pts.map(w=>{
-      const l=(projLoss*(w/wks)).toFixed(1);
-      const pct2=Math.round((w/wks)*100);
-      const lStr=weightUnit==='metric'?l+' kg':Math.round(l*2.205)+' lb';
-      return `<div class="bar-row"><div class="bar-head"><span>Week ${w}</span><span>−${lStr}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.min(pct2,100)}%"></div></div></div>`;
-    }).join('');
-    // fda
-    const bmiN=parseFloat(bmiNow);
-    document.getElementById('w-fda').textContent=bmiN>=30?'✓ Eligible (BMI '+bmiNow+')':bmiN>=27?'✓ Eligible (BMI '+bmiNow+' + comorbidity)':'✗ May not qualify (BMI '+bmiNow+')';
-    document.getElementById('w-lean').textContent=projLoss>15?'High — prioritise protein':'Moderate — maintain protein';
-  }
-}
-
-// ─── TITRATION ───────────────────────────────────────────────────────────
-const schedules={
-  sema:[
-    {w:'1–4',dose:'0.25 mg',note:'Starting dose'},
-    {w:'5–8',dose:'0.5 mg',note:'Maintenance or escalate'},
-    {w:'9–12',dose:'1.0 mg',note:'Standard maintenance'},
-    {w:'13–16',dose:'1.7 mg',note:'Wegovy only'},
-    {w:'17+',dose:'2.4 mg',note:'Wegovy max dose'},
-  ],
-  tirze:[
-    {w:'1–4',dose:'2.5 mg',note:'Starting dose'},
-    {w:'5–8',dose:'5 mg',note:'Escalation'},
-    {w:'9–12',dose:'7.5 mg',note:'Escalation'},
-    {w:'13–16',dose:'10 mg',note:'Escalation'},
-    {w:'17–20',dose:'12.5 mg',note:'Escalation'},
-    {w:'21+',dose:'15 mg',note:'Max dose'},
-  ],
-  lira:[
-    {w:'1',dose:'0.6 mg',note:'Starting dose'},
-    {w:'2',dose:'1.2 mg',note:'Escalation'},
-    {w:'3',dose:'1.8 mg',note:'Escalation'},
-    {w:'4',dose:'2.4 mg',note:'Escalation'},
-    {w:'5+',dose:'3.0 mg',note:'Max dose'},
-  ]
-};
-
-function calcTitration(){
-  const med=document.getElementById('t-med').value;
-  const current=parseInt(document.getElementById('t-current').value);
-  const sched=schedules[med];
-  const el=document.getElementById('t-schedule');
-  el.innerHTML=sched.map((row,i)=>{
-    const wnum=parseInt(row.w);
-    const status=current>=wnum&&(i===sched.length-1||current<parseInt(sched[i+1].w))?'current':current>=(i<sched.length-1?parseInt(sched[i+1].w):999)?'done':'upcoming';
-    const cls=status==='current'?'tit-current':status==='done'?'tit-done':'tit-upcoming';
-    const label=status==='current'?'← NOW':status==='done'?'Done':'Upcoming';
-    return `<div class="tit-row"><span class="tit-week">Wk ${row.w}</span><span class="tit-dose">${row.dose}</span><span class="tit-note">${row.note}</span><span class="tit-status ${cls}">${label}</span></div>`;
-  }).join('');
-}
-
-// ─── MACROS ──────────────────────────────────────────────────────────────
-let macroUnit='metric';
-function setMacroUnit(u,btn){
-  macroUnit=u;
-  document.querySelectorAll('#tab-3 .seg-row .seg-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const w=document.getElementById('m-weight');
-  const h=document.getElementById('m-height');
-  if(u==='imperial'){
-    updVal('m-weight-val',Math.round(parseFloat(w.value)*2.205)+' lb');
-    updVal('m-height-val',Math.round(parseFloat(h.value)/2.54)+' in');
-  } else {
-    updVal('m-weight-val',w.value+' kg');
-    updVal('m-height-val',h.value+' cm');
-  }
-  calcMacros();
-}
-
-function calcMacros(){
-  const wkg=parseFloat(document.getElementById('m-weight').value);
-  const hcm=parseFloat(document.getElementById('m-height').value);
-  const age=parseFloat(document.getElementById('m-age').value);
-  const sex=document.getElementById('m-sex').value;
-  const act=parseFloat(document.getElementById('m-activity').value);
-  // Harris-Benedict
-  let bmr=sex==='m'?88.362+(13.397*wkg)+(4.799*hcm)-(5.677*age):447.593+(9.247*wkg)+(3.098*hcm)-(4.330*age);
-  const tdee=Math.round(bmr*act);
-  const cal=Math.round(tdee*0.8);
-  const prot=Math.round(wkg*1.7);
-  const fat=Math.round(cal*0.3/9);
-  const carb=Math.round((cal-prot*4-fat*9)/4);
-  const fiber=sex==='m'?38:25;
-  document.getElementById('m-calories').textContent=cal.toLocaleString();
-  document.getElementById('m-protein').textContent=prot+'g';
-  document.getElementById('m-carbs').textContent=Math.max(0,carb)+'g';
-  document.getElementById('m-fat').textContent=fat+'g';
-  document.getElementById('m-fiber').textContent=fiber+'g';
-  // bars
-  const bars=document.getElementById('m-bars');
-  const total=prot*4+Math.max(0,carb)*4+fat*9;
-  bars.innerHTML=[
-    {label:'Protein',val:prot,unit:'g',pct:Math.round(prot*4/total*100)},
-    {label:'Carbs',val:Math.max(0,carb),unit:'g',pct:Math.round(Math.max(0,carb)*4/total*100)},
-    {label:'Fat',val:fat,unit:'g',pct:Math.round(fat*9/total*100)},
-  ].map(r=>`<div class="bar-row"><div class="bar-head"><span>${r.label}</span><span>${r.val}${r.unit} (${r.pct}%)</span></div><div class="bar-track"><div class="bar-fill" style="width:${r.pct}%"></div></div></div>`).join('');
-}
-
-// ─── FAQ ─────────────────────────────────────────────────────────────────
-function toggleFaq(el){el.classList.toggle('open');}
-
-// ─── VISITORS ────────────────────────────────────────────────────────────
-async function trackVisit(){
-  try{
-    const SB_URL='https://mjnigheggxtythytsqle.supabase.co';
-    const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qbmlnaGVnZ3h0eXRoeXRzcWxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNzYwMDcsImV4cCI6MjA5NTY1MjAwN30.mh1psePuKeQ8SH5uita7BsUKd6wd5IwHVVlDmJCMA0Q';
-    await fetch(`${SB_URL}/rest/v1/glp1crack_visits`,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({})});
-    const r=await fetch(`${SB_URL}/rest/v1/glp1crack_visits?select=id&created_at=gte.${new Date(Date.now()-300000).toISOString()}`,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
-    const d=await r.json();
-    document.getElementById('visitor-count').textContent=(d.length||1)+' visitors';
-  }catch(e){document.getElementById('visitor-count').textContent='visitors';}
-}
-
-// ─── INIT ────────────────────────────────────────────────────────────────
-window.addEventListener('DOMContentLoaded',()=>{
-  calcDose();calcWeight();calcTitration();calcMacros();
-  trackVisit();
-  // slider live labels
-  document.getElementById('d-dose').addEventListener('input',function(){updVal('d-dose-val',parseFloat(this.value).toFixed(2)+' mg')});
-  document.getElementById('d-conc').addEventListener('input',function(){updVal('d-conc-val',parseFloat(this.value).toFixed(2)+' mg/mL')});
-  document.getElementById('w-weight').addEventListener('input',updWeightVal);
-  document.getElementById('w-goal').addEventListener('input',updWeightVal);
-  document.getElementById('w-height').addEventListener('input',updWeightVal);
-});
 </script>
+
 </body>
 </html>
