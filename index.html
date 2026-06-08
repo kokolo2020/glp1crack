@@ -1,158 +1,616 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GLP-1 Protein Calculator</title>
-<meta name="description" content="Calculate your daily protein needs while taking GLP-1 medications such as Ozempic, Wegovy, and Zepbound.">
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    margin: 0;
-    padding: 20px;
-}
-
-.container {
-    max-width: 800px;
-    margin: auto;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-h1 {
-    text-align: center;
-    color: #2563eb;
-}
-
-input, select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1d4ed8;
-}
-
-.results {
-    margin-top: 20px;
-    padding: 15px;
-    background: #eff6ff;
-    border-radius: 10px;
-    display: none;
-}
-
-.result-item {
-    margin-bottom: 10px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-    <div class="card">
-
-        <h1>GLP-1 Protein Calculator</h1>
-
-        <label>Weight (kg)</label>
-        <input type="number" id="weight" placeholder="78">
-
-        <label>Age</label>
-        <input type="number" id="age" placeholder="52">
-
-        <label>Gender</label>
-        <select id="gender">
-            <option>Male</option>
-            <option>Female</option>
-        </select>
-
-        <label>Activity Level</label>
-        <select id="activity">
-            <option value="1.4">Low</option>
-            <option value="1.7">Moderate</option>
-            <option value="2.0">High</option>
-        </select>
-
-        <button onclick="calculateProtein()">
-            Calculate
-        </button>
-
-        <div class="results" id="results">
-
-            <div class="result-item">
-                <strong>Daily Protein:</strong>
-                <span id="protein"></span> g
-            </div>
-
-            <div class="result-item">
-                <strong>Water Intake:</strong>
-                <span id="water"></span> L
-            </div>
-
-            <div class="result-item">
-                <strong>BMI:</strong>
-                <span id="bmi"></span>
-            </div>
-
-            <div class="result-item">
-                <strong>Muscle Preservation Score:</strong>
-                <span id="score"></span>%
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<script>
-
-function calculateProtein() {
-
-    let weight = parseFloat(document.getElementById("weight").value);
-
-    if (!weight || weight <= 0) {
-        alert("Please enter your weight.");
-        return;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GLP-1 Protein Calculator</title>
+  <meta name="description" content="Calculate your daily protein, water, calorie and muscle-preservation goals while using GLP-1 medications like Ozempic, Wegovy, Zepbound and Mounjaro." />
+  <style>
+    :root {
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --green: #10b981;
+      --green-soft: #d1fae5;
+      --blue-soft: #dbeafe;
+      --text: #0f172a;
+      --muted: #64748b;
+      --bg: #f8fbff;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
     }
 
-    let protein = (weight * 1.8).toFixed(0);
-    let water = (weight * 0.035).toFixed(1);
+    * { box-sizing: border-box; }
 
-    let height = 1.65;
-    let bmi = (weight / (height * height)).toFixed(1);
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(16,185,129,.14), transparent 32%),
+        var(--bg);
+    }
 
-    let score = 90;
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px 70px;
+    }
 
-    document.getElementById("protein").innerText = protein;
-    document.getElementById("water").innerText = water;
-    document.getElementById("bmi").innerText = bmi;
-    document.getElementById("score").innerText = score;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+    }
 
-    document.getElementById("results").style.display = "block";
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 20px;
+    }
 
-</script>
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      display: grid;
+      place-items: center;
+      color: white;
+      box-shadow: var(--shadow);
+    }
 
+    nav {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: white;
+      color: var(--blue-dark);
+      border: 1px solid var(--blue-soft);
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(37,99,235,.08);
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      margin: 22px 0 20px;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 650px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 16px;
+      padding: 15px 22px;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: white;
+      box-shadow: 0 18px 32px rgba(37,99,235,.23);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .trust-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .trust-pill {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .calculator-card {
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+
+    .card-header h2 {
+      margin: 0 0 5px;
+      font-size: 25px;
+      letter-spacing: -0.5px;
+    }
+
+    .card-header span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .mini-badge {
+      background: var(--green-soft);
+      color: #047857;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 0 0 7px;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 14px 13px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+      background: white;
+    }
+
+    .full { grid-column: 1 / -1; }
+
+    .calculate {
+      width: 100%;
+      margin-top: 16px;
+      border: none;
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 900;
+      color: white;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      cursor: pointer;
+      box-shadow: 0 14px 28px rgba(37,99,235,.20);
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .result-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .result-box small {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .result-box strong {
+      display: block;
+      margin-top: 7px;
+      font-size: 26px;
+      letter-spacing: -0.6px;
+    }
+
+    .score-card {
+      margin-top: 12px;
+      padding: 18px;
+      background: linear-gradient(135deg, #eff6ff, #ecfdf5);
+      border-radius: 20px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .score-line {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .bar {
+      height: 12px;
+      background: #dbeafe;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 90%;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      border-radius: 999px;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .info-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(15,23,42,.06);
+    }
+
+    .info-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .info-card p, .faq p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .meal-list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .meal-list li:before {
+      content: "✓ ";
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .faq {
+      margin-top: 34px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 30px;
+      box-shadow: 0 12px 30px rgba(15,23,42,.06);
+    }
+
+    .faq h2 {
+      margin-top: 0;
+      font-size: 32px;
+      letter-spacing: -1px;
+    }
+
+    .faq-item {
+      border-top: 1px solid var(--border);
+      padding: 18px 0;
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 17px;
+    }
+
+    footer {
+      margin-top: 30px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .disclaimer {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 880px) {
+      header { margin-bottom: 24px; }
+      nav { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .sections { grid-template-columns: 1fr; }
+      .form-grid, .results { grid-template-columns: 1fr; }
+      .card-header { flex-direction: column; gap: 10px; }
+      .page { padding: 20px 14px 50px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark">G</div>
+        <span>GLP‑1 Protein</span>
+      </div>
+      <nav>
+        <span>Calculator</span>
+        <span>Meal Plan</span>
+        <span>FAQ</span>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="badge">🧬 Built for GLP‑1 weight loss support</div>
+        <h1>Calculate protein needs while taking GLP‑1 medication.</h1>
+        <p>
+          Estimate your daily protein, hydration, calories, and muscle-preservation score while using
+          Ozempic, Wegovy, Zepbound, Mounjaro, or other GLP‑1 medications.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#calculator" class="btn btn-primary">Start Calculator</a>
+          <a href="#guide" class="btn btn-secondary">Read Protein Guide</a>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-pill">⚡ Instant results</div>
+          <div class="trust-pill">📱 Mobile friendly</div>
+          <div class="trust-pill">🥗 Meal-plan ready</div>
+        </div>
+      </div>
+
+      <div class="calculator-card" id="calculator">
+        <div class="card-header">
+          <div>
+            <h2>Your GLP‑1 Calculator</h2>
+            <span>Enter your details to estimate your target.</span>
+          </div>
+          <div class="mini-badge">Free Tool</div>
+        </div>
+
+        <div class="form-grid">
+          <div>
+            <label for="weight">Weight</label>
+            <input id="weight" type="number" value="78" min="20" />
+          </div>
+
+          <div>
+            <label for="unit">Unit</label>
+            <select id="unit">
+              <option value="kg">kg</option>
+              <option value="lb">lb</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="age">Age</label>
+            <input id="age" type="number" value="52" min="13" />
+          </div>
+
+          <div>
+            <label for="height">Height (cm)</label>
+            <input id="height" type="number" value="165" min="100" />
+          </div>
+
+          <div>
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="activity">Activity level</label>
+            <select id="activity">
+              <option value="1.2">Low</option>
+              <option value="1.45" selected>Moderate</option>
+              <option value="1.7">High</option>
+            </select>
+          </div>
+
+          <div class="full">
+            <label for="medication">Medication</label>
+            <select id="medication">
+              <option>Ozempic</option>
+              <option>Wegovy</option>
+              <option>Zepbound</option>
+              <option>Mounjaro</option>
+              <option>Generic GLP‑1</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="calculate" onclick="calculate()">Calculate My Target</button>
+
+        <div class="results">
+          <div class="result-box">
+            <small>Daily protein</small>
+            <strong><span id="protein">140</span>g</strong>
+          </div>
+          <div class="result-box">
+            <small>Water intake</small>
+            <strong><span id="water">2.7</span>L</strong>
+          </div>
+          <div class="result-box">
+            <small>Calories estimate</small>
+            <strong><span id="calories">1,880</span></strong>
+          </div>
+          <div class="result-box">
+            <small>BMI</small>
+            <strong><span id="bmi">28.7</span></strong>
+          </div>
+        </div>
+
+        <div class="score-card">
+          <div class="score-line">
+            <span>Muscle Preservation Score</span>
+            <span><span id="score">90</span>%</span>
+          </div>
+          <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+          <p class="disclaimer">
+            This calculator is for education only and is not medical advice. Ask your doctor or dietitian for personal guidance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sections" id="guide">
+      <div class="info-card">
+        <h3>Protein Breakdown</h3>
+        <p>Spread protein across the day to make your goal easier.</p>
+        <ul class="meal-list">
+          <li>Breakfast: <span id="breakfast">35</span>g</li>
+          <li>Lunch: <span id="lunch">42</span>g</li>
+          <li>Dinner: <span id="dinner">42</span>g</li>
+          <li>Snack: <span id="snack">21</span>g</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Sample High‑Protein Day</h3>
+        <p>A simple GLP‑1 friendly structure.</p>
+        <ul class="meal-list">
+          <li>Greek yogurt or eggs</li>
+          <li>Chicken, fish, tofu, or lean beef</li>
+          <li>Vegetables and slow carbs</li>
+          <li>Protein shake if needed</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Why Protein Matters</h3>
+        <p>
+          Weight loss can reduce both fat and lean mass. A higher-protein plan plus resistance exercise
+          may help protect muscle while appetite is lower.
+        </p>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h2>GLP‑1 Protein FAQ</h2>
+      <div class="faq-item">
+        <strong>How much protein should I eat on GLP‑1?</strong>
+        <p>Many people aim around 1.6–2.0g per kg of body weight, depending on health, activity, and medical guidance.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Can GLP‑1 medications cause muscle loss?</strong>
+        <p>Weight loss may include some lean mass loss. Protein, strength training, sleep, and medical supervision can help reduce risk.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Which GLP‑1 medications does this support?</strong>
+        <p>This tool is designed for general GLP‑1 nutrition planning, including Ozempic, Wegovy, Zepbound, Mounjaro, and similar medications.</p>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 GLP‑1 Protein Calculator. Educational tool only.
+    </footer>
+  </main>
+
+  <script>
+    function calculate() {
+      const rawWeight = parseFloat(document.getElementById("weight").value || 0);
+      const unit = document.getElementById("unit").value;
+      const heightCm = parseFloat(document.getElementById("height").value || 165);
+      const age = parseFloat(document.getElementById("age").value || 35);
+      const gender = document.getElementById("gender").value;
+      const activity = parseFloat(document.getElementById("activity").value);
+
+      if (!rawWeight || rawWeight <= 0) {
+        alert("Please enter a valid weight.");
+        return;
+      }
+
+      const weightKg = unit === "lb" ? rawWeight * 0.453592 : rawWeight;
+      const protein = Math.round(weightKg * 1.8);
+      const water = (weightKg * 0.035).toFixed(1);
+
+      const heightM = heightCm / 100;
+      const bmi = (weightKg / (heightM * heightM)).toFixed(1);
+
+      let bmr;
+      if (gender === "male") {
+        bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
+      } else {
+        bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
+      }
+
+      const calories = Math.round((bmr * activity) - 400);
+      const score = Math.min(96, Math.max(72, Math.round(78 + (protein / weightKg - 1.2) * 20)));
+
+      document.getElementById("protein").textContent = protein;
+      document.getElementById("water").textContent = water;
+      document.getElementById("calories").textContent = calories.toLocaleString();
+      document.getElementById("bmi").textContent = bmi;
+      document.getElementById("score").textContent = score;
+      document.getElementById("barFill").style.width = score + "%";
+
+      document.getElementById("breakfast").textContent = Math.round(protein * 0.25);
+      document.getElementById("lunch").textContent = Math.round(protein * 0.30);
+      document.getElementById("dinner").textContent = Math.round(protein * 0.30);
+      document.getElementById("snack").textContent = Math.round(protein * 0.15);
+    }
+
+    calculate();
+  </script>
 </body>
 </html>
