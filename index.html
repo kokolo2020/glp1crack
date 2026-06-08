@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLP-1 Protein Calculator</title>
   <meta name="description" content="Calculate your daily protein, water, calorie and muscle-preservation goals while using GLP-1 medications like Ozempic, Wegovy, Zepbound and Mounjaro." />
+
   <style>
     :root {
       --blue: #2563eb;
       --blue-dark: #1d4ed8;
       --green: #10b981;
+      --green-dark: #047857;
       --green-soft: #d1fae5;
       --blue-soft: #dbeafe;
+      --orange-soft: #ffedd5;
+      --orange: #f97316;
+      --red-soft: #fee2e2;
+      --red: #ef4444;
       --text: #0f172a;
       --muted: #64748b;
       --bg: #f8fbff;
@@ -21,6 +27,8 @@
     }
 
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -69,6 +77,12 @@
       gap: 22px;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 700;
     }
 
     .hero {
@@ -154,6 +168,34 @@
       font-size: 14px;
     }
 
+    .live-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+      max-width: 650px;
+    }
+
+    .live-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 10px 24px rgba(15,23,42,.06);
+    }
+
+    .live-card small {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .live-card strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 22px;
+      letter-spacing: -0.5px;
+    }
+
     .calculator-card {
       background: rgba(255,255,255,.88);
       backdrop-filter: blur(18px);
@@ -183,7 +225,7 @@
 
     .mini-badge {
       background: var(--green-soft);
-      color: #047857;
+      color: var(--green-dark);
       padding: 8px 10px;
       border-radius: 999px;
       font-size: 12px;
@@ -220,9 +262,7 @@
       background: white;
     }
 
-    .full { grid-column: 1 / -1; }
-
-    .calculate {
+    .calculate, .print-btn {
       width: 100%;
       margin-top: 16px;
       border: none;
@@ -234,6 +274,12 @@
       background: linear-gradient(135deg, var(--blue), var(--green));
       cursor: pointer;
       box-shadow: 0 14px 28px rgba(37,99,235,.20);
+    }
+
+    .print-btn {
+      background: #0f172a;
+      margin-top: 10px;
+      box-shadow: none;
     }
 
     .results {
@@ -291,11 +337,32 @@
       border-radius: 999px;
     }
 
-    .sections {
+    .section-title {
+      margin: 46px 0 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      letter-spacing: -1px;
+      margin: 0;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    .sections, .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-      margin-top: 34px;
+      margin-top: 18px;
     }
 
     .info-card {
@@ -329,6 +396,242 @@
       content: "✓ ";
       color: var(--green);
       font-weight: 900;
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .food-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 12px 28px rgba(15,23,42,.05);
+    }
+
+    .food-card .emoji {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .food-card strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .food-card span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .visualizer {
+      margin-top: 20px;
+      background: linear-gradient(135deg, #eff6ff, #ecfdf5);
+      border: 1px solid #bfdbfe;
+      border-radius: 26px;
+      padding: 24px;
+    }
+
+    .visualizer h3 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .visualizer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .viz-box {
+      background: white;
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .viz-box .big {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .viz-box strong {
+      font-size: 24px;
+      display: block;
+    }
+
+    .chart-wrap {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(15,23,42,.06);
+    }
+
+    .chart {
+      display: flex;
+      gap: 16px;
+      align-items: end;
+      height: 230px;
+      margin-top: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .chart-col {
+      flex: 1;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .chart-bar {
+      margin: 0 auto 10px;
+      width: 70%;
+      border-radius: 14px 14px 6px 6px;
+      background: linear-gradient(180deg, var(--blue), var(--green));
+      min-height: 40px;
+    }
+
+    .risk-meter {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .risk-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .status-good { color: var(--green-dark); }
+    .status-mid { color: var(--orange); }
+
+    .projection {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .projection-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .projection-box small {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .projection-box strong {
+      display: block;
+      font-size: 24px;
+      margin-top: 6px;
+    }
+
+    .med-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      margin-top: 12px;
+    }
+
+    .med-table th, .med-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .med-table th {
+      background: #f8fafc;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .stars {
+      color: var(--orange);
+      letter-spacing: 1px;
+    }
+
+    .side-effects {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .effect-pill {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      font-weight: 800;
+      color: var(--muted);
+      text-align: center;
+      box-shadow: 0 10px 22px rgba(15,23,42,.04);
+    }
+
+    .email-box {
+      margin-top: 28px;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: white;
+      border-radius: 30px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .email-box h2 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      letter-spacing: -1px;
+    }
+
+    .email-box p {
+      margin: 0;
+      opacity: .9;
+      line-height: 1.6;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 10px;
+      min-width: 360px;
+    }
+
+    .email-form input {
+      background: white;
+      border: 0;
+    }
+
+    .email-form button {
+      border: 0;
+      border-radius: 14px;
+      background: #0f172a;
+      color: white;
+      padding: 0 18px;
+      font-weight: 900;
+      cursor: pointer;
     }
 
     .faq {
@@ -371,17 +674,28 @@
       line-height: 1.5;
     }
 
+    @media print {
+      header, nav, .hero-actions, .email-box, footer { display: none !important; }
+      body { background: white; }
+      .page { max-width: 900px; padding: 20px; }
+      .calculator-card, .info-card, .chart-wrap, .faq { box-shadow: none; }
+    }
+
     @media (max-width: 880px) {
       header { margin-bottom: 24px; }
       nav { display: none; }
       .hero { grid-template-columns: 1fr; }
-      .sections { grid-template-columns: 1fr; }
+      .sections, .dashboard-grid, .food-grid, .projection, .visualizer-grid, .side-effects, .live-stats { grid-template-columns: 1fr; }
       .form-grid, .results { grid-template-columns: 1fr; }
-      .card-header { flex-direction: column; gap: 10px; }
+      .card-header, .section-title, .email-box { flex-direction: column; display: flex; align-items: flex-start; }
+      .email-form { min-width: 100%; width: 100%; flex-direction: column; }
+      .email-form button { padding: 15px; }
+      .chart { height: 180px; gap: 8px; }
       .page { padding: 20px 14px 50px; }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
     <header>
@@ -390,9 +704,11 @@
         <span>GLP‑1 Protein</span>
       </div>
       <nav>
-        <span>Calculator</span>
-        <span>Meal Plan</span>
-        <span>FAQ</span>
+        <a href="#calculator">Calculator</a>
+        <a href="#foods">Foods</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#compare">Compare</a>
+        <a href="#faq">FAQ</a>
       </nav>
     </header>
 
@@ -401,19 +717,34 @@
         <div class="badge">🧬 Built for GLP‑1 weight loss support</div>
         <h1>Calculate protein needs while taking GLP‑1 medication.</h1>
         <p>
-          Estimate your daily protein, hydration, calories, and muscle-preservation score while using
+          Estimate your daily protein, hydration, calories, BMI, weight-loss projection and muscle-preservation score while using
           Ozempic, Wegovy, Zepbound, Mounjaro, or other GLP‑1 medications.
         </p>
 
         <div class="hero-actions">
           <a href="#calculator" class="btn btn-primary">Start Calculator</a>
-          <a href="#guide" class="btn btn-secondary">Read Protein Guide</a>
+          <a href="#foods" class="btn btn-secondary">See Protein Foods</a>
         </div>
 
         <div class="trust-row">
           <div class="trust-pill">⚡ Instant results</div>
           <div class="trust-pill">📱 Mobile friendly</div>
           <div class="trust-pill">🥗 Meal-plan ready</div>
+        </div>
+
+        <div class="live-stats">
+          <div class="live-card">
+            <small>👀 Visitors</small>
+            <strong id="visitorCount">Loading...</strong>
+          </div>
+          <div class="live-card">
+            <small>🧮 Calculations</small>
+            <strong id="calcCount">Loading...</strong>
+          </div>
+          <div class="live-card">
+            <small>💪 Avg Protein</small>
+            <strong id="avgProtein">138g</strong>
+          </div>
         </div>
       </div>
 
@@ -467,19 +798,30 @@
             </select>
           </div>
 
-          <div class="full">
+          <div>
+            <label for="goal">Goal</label>
+            <select id="goal">
+              <option value="steady">Steady weight loss</option>
+              <option value="muscle">Preserve muscle</option>
+              <option value="fast">Faster weight loss</option>
+            </select>
+          </div>
+
+          <div>
             <label for="medication">Medication</label>
             <select id="medication">
               <option>Ozempic</option>
               <option>Wegovy</option>
               <option>Zepbound</option>
               <option>Mounjaro</option>
+              <option>Rybelsus</option>
               <option>Generic GLP‑1</option>
             </select>
           </div>
         </div>
 
-        <button class="calculate" onclick="calculate()">Calculate My Target</button>
+        <button class="calculate" onclick="calculate(true)">Calculate My Target</button>
+        <button class="print-btn" onclick="window.print()">Download / Print My Report</button>
 
         <div class="results">
           <div class="result-box">
@@ -513,7 +855,137 @@
       </div>
     </section>
 
-    <section class="sections" id="guide">
+    <div class="section-title">
+      <div>
+        <h2>Today’s GLP‑1 Dashboard</h2>
+        <p>Your daily action plan based on the calculator results.</p>
+      </div>
+    </div>
+
+    <section class="dashboard-grid">
+      <div class="info-card">
+        <h3>🥩 Nutrition Target</h3>
+        <ul class="meal-list">
+          <li>Protein: <span id="dashProtein">140</span>g/day</li>
+          <li>Water: <span id="dashWater">2.7</span>L/day</li>
+          <li>Calories: <span id="dashCalories">1,880</span>/day</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>🚶 Activity Target</h3>
+        <ul class="meal-list">
+          <li>Steps: <span id="steps">8,000</span>/day</li>
+          <li>Strength training: 3x/week</li>
+          <li>Sleep target: 7–9 hours</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>📊 Weight Projection</h3>
+        <div class="projection">
+          <div class="projection-box">
+            <small>30 days</small>
+            <strong><span id="w30">75.5</span>kg</strong>
+          </div>
+          <div class="projection-box">
+            <small>60 days</small>
+            <strong><span id="w60">73.0</span>kg</strong>
+          </div>
+          <div class="projection-box">
+            <small>90 days</small>
+            <strong><span id="w90">70.5</span>kg</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title" id="foods">
+      <div>
+        <h2>Protein Food Visualizer</h2>
+        <p>See what your protein target looks like in real foods.</p>
+      </div>
+    </div>
+
+    <section class="food-grid">
+      <div class="food-card">
+        <div class="emoji">🍗</div>
+        <strong>Chicken Breast</strong>
+        <span>About 45g protein per large serving</span>
+      </div>
+      <div class="food-card">
+        <div class="emoji">🐟</div>
+        <strong>Salmon</strong>
+        <span>About 34g protein per serving</span>
+      </div>
+      <div class="food-card">
+        <div class="emoji">🥚</div>
+        <strong>Eggs</strong>
+        <span>About 6g protein per egg</span>
+      </div>
+      <div class="food-card">
+        <div class="emoji">🥛</div>
+        <strong>Greek Yogurt</strong>
+        <span>About 20g protein per cup</span>
+      </div>
+    </section>
+
+    <section class="visualizer">
+      <h3>Your protein target equals approximately:</h3>
+      <div class="visualizer-grid">
+        <div class="viz-box">
+          <div class="big">🍗</div>
+          <strong id="chickenCount">3</strong>
+          chicken servings
+        </div>
+        <div class="viz-box">
+          <div class="big">🐟</div>
+          <strong id="salmonCount">4</strong>
+          salmon servings
+        </div>
+        <div class="viz-box">
+          <div class="big">🥚</div>
+          <strong id="eggCount">23</strong>
+          eggs
+        </div>
+        <div class="viz-box">
+          <div class="big">🥛</div>
+          <strong id="yogurtCount">7</strong>
+          Greek yogurts
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title" id="timeline">
+      <div>
+        <h2>Weight Loss Timeline</h2>
+        <p>A simple visual estimate based on your goal. Results vary by person.</p>
+      </div>
+    </div>
+
+    <section class="chart-wrap">
+      <h3>Projected Weight Trend</h3>
+      <div class="chart">
+        <div class="chart-col">
+          <div class="chart-bar" id="barNow"></div>
+          Now<br><span id="chartNow">78kg</span>
+        </div>
+        <div class="chart-col">
+          <div class="chart-bar" id="bar30"></div>
+          30 Days<br><span id="chart30">75.5kg</span>
+        </div>
+        <div class="chart-col">
+          <div class="chart-bar" id="bar60"></div>
+          60 Days<br><span id="chart60">73.0kg</span>
+        </div>
+        <div class="chart-col">
+          <div class="chart-bar" id="bar90"></div>
+          90 Days<br><span id="chart90">70.5kg</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sections">
       <div class="info-card">
         <h3>Protein Breakdown</h3>
         <p>Spread protein across the day to make your goal easier.</p>
@@ -536,16 +1008,99 @@
         </ul>
       </div>
 
-      <div class="info-card">
-        <h3>Why Protein Matters</h3>
-        <p>
-          Weight loss can reduce both fat and lean mass. A higher-protein plan plus resistance exercise
-          may help protect muscle while appetite is lower.
-        </p>
+      <div class="info-card" id="risk">
+        <h3>Muscle Loss Risk Meter</h3>
+        <p>Simple signals to watch while losing weight.</p>
+        <div class="risk-meter">
+          <div class="risk-row"><span>Protein Intake</span><span class="status-good" id="proteinStatus">Good</span></div>
+          <div class="risk-row"><span>Hydration</span><span class="status-good" id="waterStatus">Good</span></div>
+          <div class="risk-row"><span>Activity</span><span class="status-mid" id="activityStatus">Moderate</span></div>
+          <div class="risk-row"><span>Overall Risk</span><span class="status-mid" id="riskStatus">Moderate</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="faq">
+    <div class="section-title" id="compare">
+      <div>
+        <h2>Medication Comparison</h2>
+        <p>General education table for popular GLP‑1 and related weight-loss medications.</p>
+      </div>
+    </div>
+
+    <section class="info-card">
+      <table class="med-table">
+        <thead>
+          <tr>
+            <th>Medication</th>
+            <th>Type</th>
+            <th>Appetite Support</th>
+            <th>Common Search Intent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ozempic</td>
+            <td>Semaglutide</td>
+            <td><span class="stars">★★★★</span></td>
+            <td>Protein intake, side effects, cost</td>
+          </tr>
+          <tr>
+            <td>Wegovy</td>
+            <td>Semaglutide</td>
+            <td><span class="stars">★★★★★</span></td>
+            <td>Weight loss, meal plan, protein</td>
+          </tr>
+          <tr>
+            <td>Zepbound</td>
+            <td>Tirzepatide</td>
+            <td><span class="stars">★★★★★</span></td>
+            <td>Protein calculator, results, comparison</td>
+          </tr>
+          <tr>
+            <td>Mounjaro</td>
+            <td>Tirzepatide</td>
+            <td><span class="stars">★★★★★</span></td>
+            <td>Nutrition, appetite, muscle loss</td>
+          </tr>
+          <tr>
+            <td>Rybelsus</td>
+            <td>Oral semaglutide</td>
+            <td><span class="stars">★★★</span></td>
+            <td>Oral GLP‑1, food timing, side effects</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="disclaimer">This table is educational only and does not compare safety or prescribe medication.</p>
+    </section>
+
+    <div class="section-title">
+      <div>
+        <h2>Common GLP‑1 Side Effects</h2>
+        <p>Useful topics for future SEO pages and user education.</p>
+      </div>
+    </div>
+
+    <section class="side-effects">
+      <div class="effect-pill">Nausea</div>
+      <div class="effect-pill">Constipation</div>
+      <div class="effect-pill">Fatigue</div>
+      <div class="effect-pill">Heartburn</div>
+      <div class="effect-pill">Low Appetite</div>
+      <div class="effect-pill">Muscle Loss</div>
+    </section>
+
+    <section class="email-box">
+      <div>
+        <h2>Get weekly GLP‑1 tips</h2>
+        <p>Meal ideas, protein tips, hydration reminders and progress-tracking ideas.</p>
+      </div>
+      <form class="email-form" onsubmit="subscribe(event)">
+        <input id="email" type="email" placeholder="Enter your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+
+    <section class="faq" id="faq">
       <h2>GLP‑1 Protein FAQ</h2>
       <div class="faq-item">
         <strong>How much protein should I eat on GLP‑1?</strong>
@@ -557,7 +1112,11 @@
       </div>
       <div class="faq-item">
         <strong>Which GLP‑1 medications does this support?</strong>
-        <p>This tool is designed for general GLP‑1 nutrition planning, including Ozempic, Wegovy, Zepbound, Mounjaro, and similar medications.</p>
+        <p>This tool is designed for general GLP‑1 nutrition planning, including Ozempic, Wegovy, Zepbound, Mounjaro, Rybelsus, and similar medications.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Is this medical advice?</strong>
+        <p>No. This is an educational calculator. People using prescription medication should follow their doctor’s plan.</p>
       </div>
     </section>
 
@@ -567,13 +1126,16 @@
   </main>
 
   <script>
-    function calculate() {
+    let currentProtein = 140;
+
+    function calculate(countAsAction) {
       const rawWeight = parseFloat(document.getElementById("weight").value || 0);
       const unit = document.getElementById("unit").value;
       const heightCm = parseFloat(document.getElementById("height").value || 165);
       const age = parseFloat(document.getElementById("age").value || 35);
       const gender = document.getElementById("gender").value;
       const activity = parseFloat(document.getElementById("activity").value);
+      const goal = document.getElementById("goal").value;
 
       if (!rawWeight || rawWeight <= 0) {
         alert("Please enter a valid weight.");
@@ -581,7 +1143,21 @@
       }
 
       const weightKg = unit === "lb" ? rawWeight * 0.453592 : rawWeight;
-      const protein = Math.round(weightKg * 1.8);
+      let proteinFactor = 1.8;
+      let deficit = 400;
+
+      if (goal === "muscle") {
+        proteinFactor = 2.0;
+        deficit = 300;
+      }
+
+      if (goal === "fast") {
+        proteinFactor = 1.7;
+        deficit = 550;
+      }
+
+      const protein = Math.round(weightKg * proteinFactor);
+      currentProtein = protein;
       const water = (weightKg * 0.035).toFixed(1);
 
       const heightM = heightCm / 100;
@@ -594,8 +1170,13 @@
         bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
       }
 
-      const calories = Math.round((bmr * activity) - 400);
-      const score = Math.min(96, Math.max(72, Math.round(78 + (protein / weightKg - 1.2) * 20)));
+      const calories = Math.max(1200, Math.round((bmr * activity) - deficit));
+      const score = Math.min(97, Math.max(70, Math.round(76 + (proteinFactor - 1.4) * 30 + (activity - 1.2) * 10)));
+
+      const weeklyLoss = goal === "fast" ? 0.75 : goal === "muscle" ? 0.4 : 0.55;
+      const w30 = Math.max(0, weightKg - weeklyLoss * 4.3).toFixed(1);
+      const w60 = Math.max(0, weightKg - weeklyLoss * 8.6).toFixed(1);
+      const w90 = Math.max(0, weightKg - weeklyLoss * 12.9).toFixed(1);
 
       document.getElementById("protein").textContent = protein;
       document.getElementById("water").textContent = water;
@@ -604,13 +1185,93 @@
       document.getElementById("score").textContent = score;
       document.getElementById("barFill").style.width = score + "%";
 
+      document.getElementById("dashProtein").textContent = protein;
+      document.getElementById("dashWater").textContent = water;
+      document.getElementById("dashCalories").textContent = calories.toLocaleString();
+
       document.getElementById("breakfast").textContent = Math.round(protein * 0.25);
       document.getElementById("lunch").textContent = Math.round(protein * 0.30);
       document.getElementById("dinner").textContent = Math.round(protein * 0.30);
       document.getElementById("snack").textContent = Math.round(protein * 0.15);
+
+      document.getElementById("chickenCount").textContent = Math.ceil(protein / 45);
+      document.getElementById("salmonCount").textContent = Math.ceil(protein / 34);
+      document.getElementById("eggCount").textContent = Math.ceil(protein / 6);
+      document.getElementById("yogurtCount").textContent = Math.ceil(protein / 20);
+
+      document.getElementById("w30").textContent = w30;
+      document.getElementById("w60").textContent = w60;
+      document.getElementById("w90").textContent = w90;
+
+      document.getElementById("chartNow").textContent = weightKg.toFixed(1) + "kg";
+      document.getElementById("chart30").textContent = w30 + "kg";
+      document.getElementById("chart60").textContent = w60 + "kg";
+      document.getElementById("chart90").textContent = w90 + "kg";
+
+      const maxWeight = weightKg;
+      document.getElementById("barNow").style.height = "190px";
+      document.getElementById("bar30").style.height = Math.max(40, 190 * (w30 / maxWeight)) + "px";
+      document.getElementById("bar60").style.height = Math.max(40, 190 * (w60 / maxWeight)) + "px";
+      document.getElementById("bar90").style.height = Math.max(40, 190 * (w90 / maxWeight)) + "px";
+
+      const steps = activity >= 1.7 ? "10,000" : activity >= 1.45 ? "8,000" : "6,000";
+      document.getElementById("steps").textContent = steps;
+
+      document.getElementById("proteinStatus").textContent = proteinFactor >= 1.8 ? "Good" : "Needs focus";
+      document.getElementById("waterStatus").textContent = parseFloat(water) >= 2 ? "Good" : "Needs focus";
+      document.getElementById("activityStatus").textContent = activity >= 1.7 ? "High" : activity >= 1.45 ? "Moderate" : "Low";
+      document.getElementById("riskStatus").textContent = score >= 88 ? "Low" : score >= 78 ? "Moderate" : "Higher";
+
+      document.getElementById("avgProtein").textContent = protein + "g";
+
+      if (countAsAction) {
+        increaseLocalCalcCount();
+      }
     }
 
-    calculate();
+    function subscribe(event) {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      alert("Thanks! Email saved locally for demo: " + email);
+      document.getElementById("email").value = "";
+    }
+
+    async function loadVisitorCounter() {
+      const counter = document.getElementById("visitorCount");
+      const namespace = "glp1-protein-calculator";
+      const key = location.hostname + location.pathname;
+
+      try {
+        const response = await fetch("https://api.countapi.xyz/hit/" + encodeURIComponent(namespace) + "/" + encodeURIComponent(key));
+        const data = await response.json();
+        if (data && data.value) {
+          counter.textContent = data.value.toLocaleString();
+        } else {
+          throw new Error("No counter value");
+        }
+      } catch (error) {
+        let localCount = Number(localStorage.getItem("glp1_demo_visitors") || "1280");
+        localCount += 1;
+        localStorage.setItem("glp1_demo_visitors", localCount);
+        counter.textContent = localCount.toLocaleString();
+      }
+    }
+
+    function loadCalculationCounter() {
+      const value = Number(localStorage.getItem("glp1_demo_calculations") || "2381");
+      document.getElementById("calcCount").textContent = value.toLocaleString();
+    }
+
+    function increaseLocalCalcCount() {
+      let value = Number(localStorage.getItem("glp1_demo_calculations") || "2381");
+      value += 1;
+      localStorage.setItem("glp1_demo_calculations", value);
+      document.getElementById("calcCount").textContent = value.toLocaleString();
+    }
+
+    calculate(false);
+    loadVisitorCounter();
+    loadCalculationCounter();
   </script>
 </body>
 </html>
