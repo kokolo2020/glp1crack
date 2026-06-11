@@ -1229,6 +1229,53 @@
       </form>
     </section>
 
+    <!-- AI GLP-1 Facts Section -->
+    <section id="ai-facts" style="margin-top:34px;background:white;border:1px solid var(--border);border-radius:30px;padding:30px;box-shadow:0 12px 30px rgba(15,23,42,.06);">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+        <div style="width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#10b981);display:grid;place-items:center;color:white;font-size:20px;">🧬</div>
+        <div>
+          <h2 style="margin:0;font-size:26px;letter-spacing:-1px;">GLP-1 Drug Facts Lookup</h2>
+          <p style="margin:0;color:var(--muted);font-size:14px;">Enter your details — get real clinical trial statistics. No advice, just facts.</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px;">
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;">Current Weight (kg)</label>
+          <input type="number" id="ai_weight" placeholder="e.g. 90" min="40" max="300" style="width:100%;margin-top:4px;padding:10px 14px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;outline:none;">
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;">Target Weight (kg)</label>
+          <input type="number" id="ai_target" placeholder="e.g. 75" min="40" max="300" style="width:100%;margin-top:4px;padding:10px 14px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;outline:none;">
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;">Age</label>
+          <input type="number" id="ai_age" placeholder="e.g. 35" min="18" max="90" style="width:100%;margin-top:4px;padding:10px 14px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;outline:none;">
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;">GLP-1 Drug</label>
+          <select id="ai_drug" style="width:100%;margin-top:4px;padding:10px 14px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;background:white;outline:none;">
+            <option value="">Select drug...</option>
+            <option value="Ozempic (semaglutide 0.5-2mg)">Ozempic (semaglutide)</option>
+            <option value="Wegovy (semaglutide 2.4mg)">Wegovy (semaglutide 2.4mg)</option>
+            <option value="Mounjaro (tirzepatide)">Mounjaro (tirzepatide)</option>
+            <option value="Zepbound (tirzepatide)">Zepbound (tirzepatide)</option>
+            <option value="Rybelsus (oral semaglutide)">Rybelsus (oral)</option>
+            <option value="Saxenda (liraglutide)">Saxenda (liraglutide)</option>
+            <option value="considering GLP-1 medications">Not sure yet</option>
+          </select>
+        </div>
+      </div>
+
+      <button onclick="getGLP1Facts()" id="ai_btn" style="margin-top:16px;background:linear-gradient(135deg,#2563eb,#10b981);color:white;border:none;border-radius:14px;padding:13px 28px;font-size:15px;font-weight:700;cursor:pointer;width:100%;">
+        Get Clinical Facts →
+      </button>
+
+      <div id="ai_result" style="display:none;margin-top:20px;background:#f8fbff;border:1.5px solid var(--border);border-radius:18px;padding:24px;line-height:1.7;font-size:15px;"></div>
+      
+      <p style="margin-top:12px;font-size:11px;color:var(--muted);text-align:center;">📋 Facts sourced from published clinical trials. Not medical advice. Consult your doctor.</p>
+    </section>
+
     <section class="faq" id="faq">
       <h2>GLP‑1 Protein FAQ</h2>
       <div class="faq-item">
@@ -1529,6 +1576,86 @@
     logEvent("visit", { page: location.pathname });
 
     setInterval(updateOnlineUsers, 30000);
+
+    // ── GLP-1 AI FACTS ──
+    async function getGLP1Facts() {
+      const weight = document.getElementById('ai_weight').value;
+      const target = document.getElementById('ai_target').value;
+      const age = document.getElementById('ai_age').value;
+      const drug = document.getElementById('ai_drug').value;
+
+      if (!weight || !target || !age || !drug) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const btn = document.getElementById('ai_btn');
+      const result = document.getElementById('ai_result');
+      btn.textContent = 'Looking up clinical data...';
+      btn.disabled = true;
+      result.style.display = 'none';
+
+      const weightToLose = parseFloat(weight) - parseFloat(target);
+      const pctToLose = ((weightToLose / parseFloat(weight)) * 100).toFixed(1);
+
+      const prompt = `You are a medical information tool that only presents published clinical trial facts. 
+      
+A user has entered:
+- Current weight: ${weight} kg
+- Target weight: ${target} kg  
+- Weight to lose: ${weightToLose.toFixed(1)} kg (${pctToLose}% of body weight)
+- Age: ${age}
+- GLP-1 drug: ${drug}
+
+Based ONLY on published clinical trial data, provide:
+1. Average % weight loss achieved in clinical trials for ${drug}
+2. Typical timeline to achieve that loss (weeks/months)
+3. Whether their target (${pctToLose}% loss) is within or above the clinical trial average
+4. Average protein recommendation for someone at ${weight}kg on GLP-1 (g/day)
+5. One key clinical trial finding about ${drug}
+
+Format as clear bullet points. Use only facts from published trials.
+End with: "⚠️ This information is from published clinical trials. It is not medical advice. Consult your doctor."
+Keep response concise and factual. No personal recommendations.`;
+
+      try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            messages: [{ role: 'user', content: prompt }]
+          })
+        });
+        const data = await response.json();
+        const text = data.content?.[0]?.text || 'Unable to retrieve data. Please try again.';
+        
+        // Convert bullet points to HTML
+        const html = text
+          .split('\n')
+          .map(line => line.trim())
+          .filter(line => line)
+          .map(line => {
+            if (line.startsWith('•') || line.startsWith('-') || line.match(/^\d+\./)) {
+              return `<div style="display:flex;gap:8px;margin-bottom:8px;"><span style="color:#2563eb;flex-shrink:0;">▸</span><span>${line.replace(/^[•\-\d\.]+\s*/, '')}</span></div>`;
+            }
+            if (line.startsWith('⚠️')) {
+              return `<div style="margin-top:16px;padding:12px;background:#fff7ed;border-radius:10px;font-size:13px;color:#92400e;">${line}</div>`;
+            }
+            return `<p style="margin:0 0 8px;">${line}</p>`;
+          }).join('');
+
+        result.innerHTML = html;
+        result.style.display = 'block';
+      } catch(e) {
+        result.innerHTML = '<p style="color:red;">Error fetching data. Please try again.</p>';
+        result.style.display = 'block';
+      }
+
+      btn.textContent = 'Get Clinical Facts →';
+      btn.disabled = false;
+    }
   </script>
 </body>
 </html>
